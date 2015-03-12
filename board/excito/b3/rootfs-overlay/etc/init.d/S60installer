@@ -1,0 +1,17 @@
+#!/bin/sh
+
+[ -x /opt/excito/installer.py ] || exit 0
+
+start() {
+    echo "Starting Excito installer ..."
+    /opt/excito/installer.py
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  *)
+    echo "Usage: $0 {start}"
+    exit 1
+esac
