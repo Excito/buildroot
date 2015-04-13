@@ -8,10 +8,16 @@ For now the generated image contains only network tools and a ssh server to conn
 
 ## Building
 
-clone this repository and run these commands :
+clone this repository and run these commands for the b3:
 
 ```
 make excito_b3_defconfig
+make
+```
+
+for the b2:
+```
+make excito_bubbatwo_defconfig
 make
 ```
 

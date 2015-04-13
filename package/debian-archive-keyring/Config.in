@@ -1,0 +1,7 @@
+config BR2_PACKAGE_DEBIAN_ARCHIVE_KEYRING
+	bool "debian archive keyring"
+	select BR2_PACKAGE_HOST_JETRING
+	select BR2_PACKAGE_HOST_GNUPG
+	help
+	  The Debian project digitally signs its Release files. This package contains the archive keys used for that.
+

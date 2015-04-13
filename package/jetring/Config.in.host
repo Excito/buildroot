@@ -1,0 +1,9 @@
+config BR2_PACKAGE_HOST_JETRING
+	bool "host jetring"
+	select BR2_PACKAGE_HOST_GNUPG
+	help
+	  gpg keyring maintenance using changesets
+
+	  jetring is a collection of tools that allow for gpg keyrings to be maintained using changesets. It was developed with the Debian keyring in mind, and aims to solve the problem that a gpg keyring is a binary blob that's hard for multiple people to collaboratively edit.
+
+	  With jetring, changesets can be submitted, reviewed to see exactly what they will do, applied, and used to build a keyring. The origin of every change made to the keyring is available for auditing, and gpg signatures can be used to further secure things.

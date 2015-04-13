@@ -1,0 +1,10 @@
+--- a/Makefile
++++ b/Makefile
+@@ -58,7 +58,5 @@
+ 	install -d $(DESTDIR)/usr/share/keyrings/
+ 	cp keyrings/debian-archive-keyring.gpg $(DESTDIR)/usr/share/keyrings/
+ 	cp keyrings/debian-archive-removed-keys.gpg $(DESTDIR)/usr/share/keyrings/
+-	install -d $(DESTDIR)/etc/apt/trusted.gpg.d/
+-	cp $(shell find trusted.gpg/ -name '*.gpg' -type f) $(DESTDIR)/etc/apt/trusted.gpg.d/
+ 
+ .PHONY: verify-indices verify-results clean build install
