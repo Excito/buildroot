@@ -1,0 +1,5 @@
+config BR2_PACKAGE_HOST_DPKG_DEB
+	bool "host dpkg-deb"
+	select BR2_PACKAGE_ZLIB
+	help
+	  dpkg-deb packs, unpacks and provides information about Debian archives.
