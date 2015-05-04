@@ -1,0 +1,4 @@
+config BR2_PACKAGE_WRITE_MAGIC
+	bool "write-magic"
+	help
+	  write-magic is exclusive to the Excito B3 platform ; It allows to write a special value into nvram in order to tell U-Boot to "shutdown" the system after rebooting.
