@@ -2,11 +2,11 @@
 
 cp board/excito/b3/{install.its,cache_head_patch} $1
 
-echo "Patching kernel for U-Boot kirkwood bug"
+echo "Patching kernel for U-Boot kirkwood bug and appending dtb"
 
 cd $1
 
-cat cache_head_patch zImage > zImage.b3
+cat cache_head_patch zImage kirkwood-b3.dtb > zImage.b3
 
 echo "Generating install.itb"
 

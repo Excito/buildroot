@@ -1,7 +1,7 @@
-diff -urN linux-3.18.11.orig/arch/powerpc/platforms/83xx/bubbatwo.c linux-3.18.11/arch/powerpc/platforms/83xx/bubbatwo.c
---- linux-3.18.11.orig/arch/powerpc/platforms/83xx/bubbatwo.c	1970-01-01 00:00:00.000000000 +0000
-+++ linux-3.18.11/arch/powerpc/platforms/83xx/bubbatwo.c	2015-04-13 03:51:25.546021230 +0000
-@@ -0,0 +1,495 @@
+diff -urN linux-3.18.13.orig/arch/powerpc/platforms/83xx/bubbatwo.c linux-3.18.13.powerpc/arch/powerpc/platforms/83xx/bubbatwo.c
+--- linux-3.18.13.orig/arch/powerpc/platforms/83xx/bubbatwo.c	1969-12-31 19:00:00.000000000 -0500
++++ linux-3.18.13.powerpc/arch/powerpc/platforms/83xx/bubbatwo.c	2015-05-11 23:37:45.799891240 -0400
+@@ -0,0 +1,497 @@
 +/*
 + * Excito BUBBA|TWO driver.
 + *
@@ -38,7 +38,6 @@ diff -urN linux-3.18.11.orig/arch/powerpc/platforms/83xx/bubbatwo.c linux-3.18.1
 +static char* ver="0.2";
 +
 +#define DEVNAME "bubbatwo"
-+#define BUBBA_MAGIC 0xdeadbeef
 +#define LED_DEFAULT_FREQ 0x8000
 +#define DEVICE_MAJOR 241
 +#define GPIO_IRQ 74
@@ -96,25 +95,24 @@ diff -urN linux-3.18.11.orig/arch/powerpc/platforms/83xx/bubbatwo.c linux-3.18.1
 +
 +	if(!b2_data.invoked){
 +		b2_data.invoked=1;
-+		b2_write_magic(BUBBA_MAGIC);
-+		argv[0] = "/sbin/reboot";
++		argv[0] = "/sbin/halt";
 +		argv[1] = NULL;
 +
 +		if (!(envp = (char **) kcalloc (20, sizeof (char *), GFP_KERNEL))) {
 +			printk(KERN_ERR  "BUBBATWO: failed to allocate memory");
-+		return;
-+	}
++			return;
++		}
 +
 +		/* minimal command environment */
 +		envp [i++] = "HOME=/";
 +		envp [i++] = "PATH=/sbin:/bin:/usr/sbin:/usr/bin";
 +		printk(KERN_DEBUG "BUBBATWO: Invoking usermodehelper");
-+		ret=call_usermodehelper (argv [0], argv, envp, 0);
++		ret=call_usermodehelper (argv[0], argv, envp, 0);
 +		kfree (envp);
 +		b2_led_blink(LED_DEFAULT_FREQ);
 +
-+	}else{
-+		printk(KERN_DEBUG "BUBBATWO: Already invoked reboot");
++	} else {
++		printk(KERN_DEBUG "BUBBATWO: Already invoked shutdown");
 +	}
 +}
 +
@@ -315,6 +313,10 @@ diff -urN linux-3.18.11.orig/arch/powerpc/platforms/83xx/bubbatwo.c linux-3.18.1
 +
 +	b2_data.freq=simple_strtoul(buffer,NULL,0);
 +
++	if (b2_data.mode == 1) {
++		b2_led_blink(b2_data.freq);
++	}
++
 +	return size;
 +}
 +
@@ -497,9 +499,9 @@ diff -urN linux-3.18.11.orig/arch/powerpc/platforms/83xx/bubbatwo.c linux-3.18.1
 +/* register init and cleanup functions */
 +module_init(bubbatwo_init);
 +module_exit(bubbatwo_cleanup);
-diff -urN linux-3.18.11.orig/arch/powerpc/platforms/83xx/Kconfig linux-3.18.11/arch/powerpc/platforms/83xx/Kconfig
---- linux-3.18.11.orig/arch/powerpc/platforms/83xx/Kconfig	2015-04-04 02:46:37.000000000 +0000
-+++ linux-3.18.11/arch/powerpc/platforms/83xx/Kconfig	2015-04-13 03:51:25.546021230 +0000
+diff -urN linux-3.18.13.orig/arch/powerpc/platforms/83xx/Kconfig linux-3.18.13.powerpc/arch/powerpc/platforms/83xx/Kconfig
+--- linux-3.18.13.orig/arch/powerpc/platforms/83xx/Kconfig	2015-05-05 12:39:05.000000000 -0400
++++ linux-3.18.13.powerpc/arch/powerpc/platforms/83xx/Kconfig	2015-05-11 21:28:18.543479862 -0400
 @@ -24,6 +24,13 @@
  	help
  	  This option enables support for the MPC8313 RDB and MPC8315 RDB boards.
@@ -514,9 +516,9 @@ diff -urN linux-3.18.11.orig/arch/powerpc/platforms/83xx/Kconfig linux-3.18.11/a
  config MPC832x_MDS
  	bool "Freescale MPC832x MDS"
  	select DEFAULT_UIMAGE
-diff -urN linux-3.18.11.orig/arch/powerpc/platforms/83xx/Makefile linux-3.18.11/arch/powerpc/platforms/83xx/Makefile
---- linux-3.18.11.orig/arch/powerpc/platforms/83xx/Makefile	2015-04-04 02:46:37.000000000 +0000
-+++ linux-3.18.11/arch/powerpc/platforms/83xx/Makefile	2015-04-13 03:51:25.546021230 +0000
+diff -urN linux-3.18.13.orig/arch/powerpc/platforms/83xx/Makefile linux-3.18.13.powerpc/arch/powerpc/platforms/83xx/Makefile
+--- linux-3.18.13.orig/arch/powerpc/platforms/83xx/Makefile	2015-05-05 12:39:05.000000000 -0400
++++ linux-3.18.13.powerpc/arch/powerpc/platforms/83xx/Makefile	2015-05-11 21:28:18.543479862 -0400
 @@ -7,6 +7,7 @@
  obj-$(CONFIG_MPC830x_RDB)	+= mpc830x_rdb.o
  obj-$(CONFIG_MPC831x_RDB)	+= mpc831x_rdb.o
@@ -525,9 +527,40 @@ diff -urN linux-3.18.11.orig/arch/powerpc/platforms/83xx/Makefile linux-3.18.11/
  obj-$(CONFIG_MPC834x_MDS)	+= mpc834x_mds.o
  obj-$(CONFIG_MPC834x_ITX)	+= mpc834x_itx.o
  obj-$(CONFIG_MPC836x_MDS)	+= mpc836x_mds.o
-diff -urN linux-3.18.11.orig/arch/powerpc/platforms/83xx/mpc83xx.h linux-3.18.11/arch/powerpc/platforms/83xx/mpc83xx.h
---- linux-3.18.11.orig/arch/powerpc/platforms/83xx/mpc83xx.h	2015-04-04 02:46:37.000000000 +0000
-+++ linux-3.18.11/arch/powerpc/platforms/83xx/mpc83xx.h	2015-04-13 03:51:25.546021230 +0000
+diff -urN linux-3.18.13.orig/arch/powerpc/platforms/83xx/misc.c linux-3.18.13.powerpc/arch/powerpc/platforms/83xx/misc.c
+--- linux-3.18.13.orig/arch/powerpc/platforms/83xx/misc.c	2015-05-05 12:39:05.000000000 -0400
++++ linux-3.18.13.powerpc/arch/powerpc/platforms/83xx/misc.c	2015-05-11 21:28:18.543479862 -0400
+@@ -35,6 +35,13 @@
+ 
+ arch_initcall(mpc83xx_restart_init);
+ 
++#ifdef CONFIG_BUBBATWO
++void b2_halt(void)
++{
++	mpc83xx_restart(NULL);
++}
++#endif
++
+ void mpc83xx_restart(char *cmd)
+ {
+ #define RST_OFFSET	0x00000900
+diff -urN linux-3.18.13.orig/arch/powerpc/platforms/83xx/mpc831x_rdb.c linux-3.18.13.powerpc/arch/powerpc/platforms/83xx/mpc831x_rdb.c
+--- linux-3.18.13.orig/arch/powerpc/platforms/83xx/mpc831x_rdb.c	2015-05-05 12:39:05.000000000 -0400
++++ linux-3.18.13.powerpc/arch/powerpc/platforms/83xx/mpc831x_rdb.c	2015-05-11 21:28:18.543479862 -0400
+@@ -58,6 +58,10 @@
+ 	.init_IRQ		= mpc83xx_ipic_init_IRQ,
+ 	.get_irq		= ipic_get_irq,
+ 	.restart		= mpc83xx_restart,
++#ifdef CONFIG_BUBBATWO
++	.power_off      = b2_halt,
++	.halt           = b2_halt,
++#endif
+ 	.time_init		= mpc83xx_time_init,
+ 	.calibrate_decr		= generic_calibrate_decr,
+ 	.progress		= udbg_progress,
+diff -urN linux-3.18.13.orig/arch/powerpc/platforms/83xx/mpc83xx.h linux-3.18.13.powerpc/arch/powerpc/platforms/83xx/mpc83xx.h
+--- linux-3.18.13.orig/arch/powerpc/platforms/83xx/mpc83xx.h	2015-05-05 12:39:05.000000000 -0400
++++ linux-3.18.13.powerpc/arch/powerpc/platforms/83xx/mpc83xx.h	2015-05-11 21:28:18.543479862 -0400
 @@ -48,6 +48,7 @@
  /* USB Control Register */
  #define FSL_USB2_CONTROL_OFFS      0x500
@@ -536,7 +569,7 @@ diff -urN linux-3.18.11.orig/arch/powerpc/platforms/83xx/mpc83xx.h linux-3.18.11
  #define CONTROL_REFSEL_24MHZ       0x00000040
  #define CONTROL_REFSEL_48MHZ       0x00000080
  #define CONTROL_PHY_CLK_SEL_ULPI   0x00000400
-@@ -60,6 +61,60 @@
+@@ -60,11 +61,68 @@
  #define PORTSCX_PTS_UTMI           0x00000000
  #define PORTSCX_PTS_ULPI           0x80000000
  
@@ -597,9 +630,17 @@ diff -urN linux-3.18.11.orig/arch/powerpc/platforms/83xx/mpc83xx.h linux-3.18.11
  /*
   * Declaration for the various functions exported by the
   * mpc83xx_* files. Mostly for use by mpc83xx_setup
-diff -urN linux-3.18.11.orig/arch/powerpc/platforms/83xx/usb.c linux-3.18.11/arch/powerpc/platforms/83xx/usb.c
---- linux-3.18.11.orig/arch/powerpc/platforms/83xx/usb.c	2015-04-04 02:46:37.000000000 +0000
-+++ linux-3.18.11/arch/powerpc/platforms/83xx/usb.c	2015-04-13 03:51:25.546021230 +0000
+  */
+ 
++#ifdef CONFIG_BUBBATWO
++extern void b2_halt(void);
++#endif
+ extern void mpc83xx_restart(char *cmd);
+ extern long mpc83xx_time_init(void);
+ extern int mpc837x_usb_cfg(void);
+diff -urN linux-3.18.13.orig/arch/powerpc/platforms/83xx/usb.c linux-3.18.13.powerpc/arch/powerpc/platforms/83xx/usb.c
+--- linux-3.18.13.orig/arch/powerpc/platforms/83xx/usb.c	2015-05-05 12:39:05.000000000 -0400
++++ linux-3.18.13.powerpc/arch/powerpc/platforms/83xx/usb.c	2015-05-11 21:28:18.543479862 -0400
 @@ -184,7 +184,7 @@
  		if (of_device_is_compatible(immr_node, "fsl,mpc8315-immr"))
  			refsel = CONTROL_REFSEL_24MHZ;
@@ -609,9 +650,9 @@ diff -urN linux-3.18.11.orig/arch/powerpc/platforms/83xx/usb.c linux-3.18.11/arc
  		/* Set UTMI_PHY_EN and REFSEL */
  		out_be32(usb_regs + FSL_USB2_CONTROL_OFFS,
  				CONTROL_UTMI_PHY_EN | refsel);
-diff -urN linux-3.18.11.orig/drivers/net/phy/Kconfig linux-3.18.11/drivers/net/phy/Kconfig
---- linux-3.18.11.orig/drivers/net/phy/Kconfig	2015-04-04 02:46:37.000000000 +0000
-+++ linux-3.18.11/drivers/net/phy/Kconfig	2015-04-13 03:51:19.852687731 +0000
+diff -urN linux-3.18.13.orig/drivers/net/phy/Kconfig linux-3.18.13.powerpc/drivers/net/phy/Kconfig
+--- linux-3.18.13.orig/drivers/net/phy/Kconfig	2015-05-05 12:39:05.000000000 -0400
++++ linux-3.18.13.powerpc/drivers/net/phy/Kconfig	2015-05-11 21:28:18.543479862 -0400
 @@ -56,9 +56,14 @@
  	  Currently supports the cis8204
  
@@ -630,9 +671,9 @@ diff -urN linux-3.18.11.orig/drivers/net/phy/Kconfig linux-3.18.11/drivers/net/p
  
  config SMSC_PHY
  	tristate "Drivers for SMSC PHYs"
-diff -urN linux-3.18.11.orig/drivers/net/phy/vitesse.c linux-3.18.11/drivers/net/phy/vitesse.c
---- linux-3.18.11.orig/drivers/net/phy/vitesse.c	2015-04-04 02:46:37.000000000 +0000
-+++ linux-3.18.11/drivers/net/phy/vitesse.c	2015-04-13 03:51:19.852687731 +0000
+diff -urN linux-3.18.13.orig/drivers/net/phy/vitesse.c linux-3.18.13.powerpc/drivers/net/phy/vitesse.c
+--- linux-3.18.13.orig/drivers/net/phy/vitesse.c	2015-05-05 12:39:05.000000000 -0400
++++ linux-3.18.13.powerpc/drivers/net/phy/vitesse.c	2015-05-11 21:28:18.543479862 -0400
 @@ -31,6 +31,11 @@
  #define MII_VSC8244_EXTCON1_TX_SKEW	0x0800
  #define MII_VSC8244_EXTCON1_RX_SKEW	0x0200
@@ -713,76 +754,9 @@ diff -urN linux-3.18.11.orig/drivers/net/phy/vitesse.c linux-3.18.11/drivers/net
  	{ }
  };
  
-diff -urN linux-3.18.11.orig/drivers/net/wireless/ath/Kconfig linux-3.18.11/drivers/net/wireless/ath/Kconfig
---- linux-3.18.11.orig/drivers/net/wireless/ath/Kconfig	2015-04-04 02:46:37.000000000 +0000
-+++ linux-3.18.11/drivers/net/wireless/ath/Kconfig	2015-04-13 03:51:09.056020748 +0000
-@@ -19,6 +19,16 @@
- 
- if ATH_CARDS
- 
-+config ATH_USER_REGD
-+	bool "Force Atheros drivers to respect the user's regdomain settings"
-+	---help---
-+	  Atheros' idea of regulatory handling is that the EEPROM of the card defines
-+	  the regulatory limits and the user is only allowed to restrict the settings
-+	  even further, even if the country allows frequencies or power levels that
-+
-+	  Select this option if you want the driver to respect the user's decision about
-+	  regulatory settings.
-+
- config ATH_DEBUG
- 	bool "Atheros wireless debugging"
- 	---help---
-diff -urN linux-3.18.11.orig/drivers/net/wireless/ath/regd.c linux-3.18.11/drivers/net/wireless/ath/regd.c
---- linux-3.18.11.orig/drivers/net/wireless/ath/regd.c	2015-04-04 02:46:37.000000000 +0000
-+++ linux-3.18.11/drivers/net/wireless/ath/regd.c	2015-04-13 03:51:09.056020748 +0000
-@@ -341,6 +341,10 @@
- 	struct ieee80211_channel *ch;
- 	unsigned int i;
- 
-+#ifdef ATH_USER_REGD
-+	return;
-+#endif
-+
- 	for (band = 0; band < IEEE80211_NUM_BANDS; band++) {
- 		if (!wiphy->bands[band])
- 			continue;
-@@ -374,6 +378,10 @@
- {
- 	struct ieee80211_supported_band *sband;
- 
-+#ifdef ATH_USER_REGD
-+	return;
-+#endif
-+
- 	sband = wiphy->bands[IEEE80211_BAND_2GHZ];
- 	if (!sband)
- 		return;
-@@ -402,6 +410,10 @@
- 	struct ieee80211_channel *ch;
- 	unsigned int i;
- 
-+#ifdef ATH_USER_REGD
-+	return;
-+#endif
-+
- 	if (!wiphy->bands[IEEE80211_BAND_5GHZ])
- 		return;
- 
-@@ -632,6 +644,10 @@
- {
- 	const struct ieee80211_regdomain *regd;
- 
-+#ifdef ATH_USER_REGD
-+	return;
-+#endif
-+
- 	wiphy->reg_notifier = reg_notifier;
- 	wiphy->regulatory_flags |= REGULATORY_STRICT_REG |
- 				   REGULATORY_CUSTOM_REG;
-diff -urN linux-3.18.11.orig/drivers/rtc/rtc-isl1208.c linux-3.18.11/drivers/rtc/rtc-isl1208.c
---- linux-3.18.11.orig/drivers/rtc/rtc-isl1208.c	2015-04-04 02:46:37.000000000 +0000
-+++ linux-3.18.11/drivers/rtc/rtc-isl1208.c	2015-04-13 03:51:25.546021230 +0000
+diff -urN linux-3.18.13.orig/drivers/rtc/rtc-isl1208.c linux-3.18.13.powerpc/drivers/rtc/rtc-isl1208.c
+--- linux-3.18.13.orig/drivers/rtc/rtc-isl1208.c	2015-05-05 12:39:05.000000000 -0400
++++ linux-3.18.13.powerpc/drivers/rtc/rtc-isl1208.c	2015-05-11 21:28:18.546813195 -0400
 @@ -630,7 +630,7 @@
  static int
  isl1208_probe(struct i2c_client *client, const struct i2c_device_id *id)

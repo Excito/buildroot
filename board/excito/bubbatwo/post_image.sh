@@ -1,6 +1,6 @@
 #!/bin/sh
 
-for f in bubbatwo.dts reloc_shim_itb.S install.its; do
+for f in bubbatwo.dts reloc_shim_itb.S 8313E21.its; do
   cp board/excito/bubbatwo/$f $1
 done
 
@@ -18,6 +18,6 @@ powerpc-linux-objcopy -O binary reloc_shim_itb.o reloc_shim_itb.bin
 
 echo "Generating 8313E21.itb"
 
-mkimage -f install.its 8313E21.itb
+mkimage -f 8313E21.its 8313E21.itb
 
-rm vmlinux.bin bubbatwo.dts bubbatwo.dtb reloc_shim_itb.S reloc_shim_itb.o reloc_shim_itb.bin install.its
+rm vmlinux.bin bubbatwo.dts bubbatwo.dtb reloc_shim_itb.S reloc_shim_itb.o reloc_shim_itb.bin 8313E21.its
