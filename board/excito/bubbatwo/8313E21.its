@@ -7,7 +7,7 @@
 	images {
 
 		kernel@1 {
-			description = "shimmed kernel-3.8.13-bubbatwo-install";
+			description = "shimmed kernel-3.8.14-bubbatwo-install";
 			data = /incbin/("./reloc_shim_itb.bin");
 			type = "kernel";
 			arch = "ppc";
