@@ -1,6 +1,6 @@
-diff -urN linux-3.18.13.orig/arch/powerpc/platforms/83xx/bubbatwo.c linux-3.18.13.powerpc/arch/powerpc/platforms/83xx/bubbatwo.c
---- linux-3.18.13.orig/arch/powerpc/platforms/83xx/bubbatwo.c	1969-12-31 19:00:00.000000000 -0500
-+++ linux-3.18.13.powerpc/arch/powerpc/platforms/83xx/bubbatwo.c	2015-05-11 23:37:45.799891240 -0400
+diff -urN linux-3.18.14/arch/powerpc/platforms/83xx/bubbatwo.c linux-3.18.14.bubbatwo/arch/powerpc/platforms/83xx/bubbatwo.c
+--- linux-3.18.14/arch/powerpc/platforms/83xx/bubbatwo.c	1969-12-31 19:00:00.000000000 -0500
++++ linux-3.18.14.bubbatwo/arch/powerpc/platforms/83xx/bubbatwo.c	2015-05-23 12:57:51.467904760 -0400
 @@ -0,0 +1,497 @@
 +/*
 + * Excito BUBBA|TWO driver.
@@ -107,7 +107,7 @@ diff -urN linux-3.18.13.orig/arch/powerpc/platforms/83xx/bubbatwo.c linux-3.18.1
 +		envp [i++] = "HOME=/";
 +		envp [i++] = "PATH=/sbin:/bin:/usr/sbin:/usr/bin";
 +		printk(KERN_DEBUG "BUBBATWO: Invoking usermodehelper");
-+		ret=call_usermodehelper (argv[0], argv, envp, 0);
++		ret=call_usermodehelper (argv[0], argv, envp, UMH_WAIT_PROC);
 +		kfree (envp);
 +		b2_led_blink(LED_DEFAULT_FREQ);
 +
@@ -499,9 +499,9 @@ diff -urN linux-3.18.13.orig/arch/powerpc/platforms/83xx/bubbatwo.c linux-3.18.1
 +/* register init and cleanup functions */
 +module_init(bubbatwo_init);
 +module_exit(bubbatwo_cleanup);
-diff -urN linux-3.18.13.orig/arch/powerpc/platforms/83xx/Kconfig linux-3.18.13.powerpc/arch/powerpc/platforms/83xx/Kconfig
---- linux-3.18.13.orig/arch/powerpc/platforms/83xx/Kconfig	2015-05-05 12:39:05.000000000 -0400
-+++ linux-3.18.13.powerpc/arch/powerpc/platforms/83xx/Kconfig	2015-05-11 21:28:18.543479862 -0400
+diff -urN linux-3.18.14/arch/powerpc/platforms/83xx/Kconfig linux-3.18.14.bubbatwo/arch/powerpc/platforms/83xx/Kconfig
+--- linux-3.18.14/arch/powerpc/platforms/83xx/Kconfig	2015-05-20 11:04:50.000000000 -0400
++++ linux-3.18.14.bubbatwo/arch/powerpc/platforms/83xx/Kconfig	2015-05-21 12:46:27.553570148 -0400
 @@ -24,6 +24,13 @@
  	help
  	  This option enables support for the MPC8313 RDB and MPC8315 RDB boards.
@@ -516,9 +516,9 @@ diff -urN linux-3.18.13.orig/arch/powerpc/platforms/83xx/Kconfig linux-3.18.13.p
  config MPC832x_MDS
  	bool "Freescale MPC832x MDS"
  	select DEFAULT_UIMAGE
-diff -urN linux-3.18.13.orig/arch/powerpc/platforms/83xx/Makefile linux-3.18.13.powerpc/arch/powerpc/platforms/83xx/Makefile
---- linux-3.18.13.orig/arch/powerpc/platforms/83xx/Makefile	2015-05-05 12:39:05.000000000 -0400
-+++ linux-3.18.13.powerpc/arch/powerpc/platforms/83xx/Makefile	2015-05-11 21:28:18.543479862 -0400
+diff -urN linux-3.18.14/arch/powerpc/platforms/83xx/Makefile linux-3.18.14.bubbatwo/arch/powerpc/platforms/83xx/Makefile
+--- linux-3.18.14/arch/powerpc/platforms/83xx/Makefile	2015-05-20 11:04:50.000000000 -0400
++++ linux-3.18.14.bubbatwo/arch/powerpc/platforms/83xx/Makefile	2015-05-21 12:46:27.553570148 -0400
 @@ -7,6 +7,7 @@
  obj-$(CONFIG_MPC830x_RDB)	+= mpc830x_rdb.o
  obj-$(CONFIG_MPC831x_RDB)	+= mpc831x_rdb.o
@@ -527,9 +527,9 @@ diff -urN linux-3.18.13.orig/arch/powerpc/platforms/83xx/Makefile linux-3.18.13.
  obj-$(CONFIG_MPC834x_MDS)	+= mpc834x_mds.o
  obj-$(CONFIG_MPC834x_ITX)	+= mpc834x_itx.o
  obj-$(CONFIG_MPC836x_MDS)	+= mpc836x_mds.o
-diff -urN linux-3.18.13.orig/arch/powerpc/platforms/83xx/misc.c linux-3.18.13.powerpc/arch/powerpc/platforms/83xx/misc.c
---- linux-3.18.13.orig/arch/powerpc/platforms/83xx/misc.c	2015-05-05 12:39:05.000000000 -0400
-+++ linux-3.18.13.powerpc/arch/powerpc/platforms/83xx/misc.c	2015-05-11 21:28:18.543479862 -0400
+diff -urN linux-3.18.14/arch/powerpc/platforms/83xx/misc.c linux-3.18.14.bubbatwo/arch/powerpc/platforms/83xx/misc.c
+--- linux-3.18.14/arch/powerpc/platforms/83xx/misc.c	2015-05-20 11:04:50.000000000 -0400
++++ linux-3.18.14.bubbatwo/arch/powerpc/platforms/83xx/misc.c	2015-05-21 12:46:27.553570148 -0400
 @@ -35,6 +35,13 @@
  
  arch_initcall(mpc83xx_restart_init);
@@ -544,9 +544,9 @@ diff -urN linux-3.18.13.orig/arch/powerpc/platforms/83xx/misc.c linux-3.18.13.po
  void mpc83xx_restart(char *cmd)
  {
  #define RST_OFFSET	0x00000900
-diff -urN linux-3.18.13.orig/arch/powerpc/platforms/83xx/mpc831x_rdb.c linux-3.18.13.powerpc/arch/powerpc/platforms/83xx/mpc831x_rdb.c
---- linux-3.18.13.orig/arch/powerpc/platforms/83xx/mpc831x_rdb.c	2015-05-05 12:39:05.000000000 -0400
-+++ linux-3.18.13.powerpc/arch/powerpc/platforms/83xx/mpc831x_rdb.c	2015-05-11 21:28:18.543479862 -0400
+diff -urN linux-3.18.14/arch/powerpc/platforms/83xx/mpc831x_rdb.c linux-3.18.14.bubbatwo/arch/powerpc/platforms/83xx/mpc831x_rdb.c
+--- linux-3.18.14/arch/powerpc/platforms/83xx/mpc831x_rdb.c	2015-05-20 11:04:50.000000000 -0400
++++ linux-3.18.14.bubbatwo/arch/powerpc/platforms/83xx/mpc831x_rdb.c	2015-05-21 12:46:27.553570148 -0400
 @@ -58,6 +58,10 @@
  	.init_IRQ		= mpc83xx_ipic_init_IRQ,
  	.get_irq		= ipic_get_irq,
@@ -558,9 +558,9 @@ diff -urN linux-3.18.13.orig/arch/powerpc/platforms/83xx/mpc831x_rdb.c linux-3.1
  	.time_init		= mpc83xx_time_init,
  	.calibrate_decr		= generic_calibrate_decr,
  	.progress		= udbg_progress,
-diff -urN linux-3.18.13.orig/arch/powerpc/platforms/83xx/mpc83xx.h linux-3.18.13.powerpc/arch/powerpc/platforms/83xx/mpc83xx.h
---- linux-3.18.13.orig/arch/powerpc/platforms/83xx/mpc83xx.h	2015-05-05 12:39:05.000000000 -0400
-+++ linux-3.18.13.powerpc/arch/powerpc/platforms/83xx/mpc83xx.h	2015-05-11 21:28:18.543479862 -0400
+diff -urN linux-3.18.14/arch/powerpc/platforms/83xx/mpc83xx.h linux-3.18.14.bubbatwo/arch/powerpc/platforms/83xx/mpc83xx.h
+--- linux-3.18.14/arch/powerpc/platforms/83xx/mpc83xx.h	2015-05-20 11:04:50.000000000 -0400
++++ linux-3.18.14.bubbatwo/arch/powerpc/platforms/83xx/mpc83xx.h	2015-05-21 12:46:27.553570148 -0400
 @@ -48,6 +48,7 @@
  /* USB Control Register */
  #define FSL_USB2_CONTROL_OFFS      0x500
@@ -638,9 +638,9 @@ diff -urN linux-3.18.13.orig/arch/powerpc/platforms/83xx/mpc83xx.h linux-3.18.13
  extern void mpc83xx_restart(char *cmd);
  extern long mpc83xx_time_init(void);
  extern int mpc837x_usb_cfg(void);
-diff -urN linux-3.18.13.orig/arch/powerpc/platforms/83xx/usb.c linux-3.18.13.powerpc/arch/powerpc/platforms/83xx/usb.c
---- linux-3.18.13.orig/arch/powerpc/platforms/83xx/usb.c	2015-05-05 12:39:05.000000000 -0400
-+++ linux-3.18.13.powerpc/arch/powerpc/platforms/83xx/usb.c	2015-05-11 21:28:18.543479862 -0400
+diff -urN linux-3.18.14/arch/powerpc/platforms/83xx/usb.c linux-3.18.14.bubbatwo/arch/powerpc/platforms/83xx/usb.c
+--- linux-3.18.14/arch/powerpc/platforms/83xx/usb.c	2015-05-20 11:04:50.000000000 -0400
++++ linux-3.18.14.bubbatwo/arch/powerpc/platforms/83xx/usb.c	2015-05-21 12:46:27.553570148 -0400
 @@ -184,7 +184,7 @@
  		if (of_device_is_compatible(immr_node, "fsl,mpc8315-immr"))
  			refsel = CONTROL_REFSEL_24MHZ;
@@ -650,9 +650,9 @@ diff -urN linux-3.18.13.orig/arch/powerpc/platforms/83xx/usb.c linux-3.18.13.pow
  		/* Set UTMI_PHY_EN and REFSEL */
  		out_be32(usb_regs + FSL_USB2_CONTROL_OFFS,
  				CONTROL_UTMI_PHY_EN | refsel);
-diff -urN linux-3.18.13.orig/drivers/net/phy/Kconfig linux-3.18.13.powerpc/drivers/net/phy/Kconfig
---- linux-3.18.13.orig/drivers/net/phy/Kconfig	2015-05-05 12:39:05.000000000 -0400
-+++ linux-3.18.13.powerpc/drivers/net/phy/Kconfig	2015-05-11 21:28:18.543479862 -0400
+diff -urN linux-3.18.14/drivers/net/phy/Kconfig linux-3.18.14.bubbatwo/drivers/net/phy/Kconfig
+--- linux-3.18.14/drivers/net/phy/Kconfig	2015-05-20 11:04:50.000000000 -0400
++++ linux-3.18.14.bubbatwo/drivers/net/phy/Kconfig	2015-05-21 12:46:27.553570148 -0400
 @@ -56,9 +56,14 @@
  	  Currently supports the cis8204
  
@@ -671,9 +671,9 @@ diff -urN linux-3.18.13.orig/drivers/net/phy/Kconfig linux-3.18.13.powerpc/drive
  
  config SMSC_PHY
  	tristate "Drivers for SMSC PHYs"
-diff -urN linux-3.18.13.orig/drivers/net/phy/vitesse.c linux-3.18.13.powerpc/drivers/net/phy/vitesse.c
---- linux-3.18.13.orig/drivers/net/phy/vitesse.c	2015-05-05 12:39:05.000000000 -0400
-+++ linux-3.18.13.powerpc/drivers/net/phy/vitesse.c	2015-05-11 21:28:18.543479862 -0400
+diff -urN linux-3.18.14/drivers/net/phy/vitesse.c linux-3.18.14.bubbatwo/drivers/net/phy/vitesse.c
+--- linux-3.18.14/drivers/net/phy/vitesse.c	2015-05-20 11:04:50.000000000 -0400
++++ linux-3.18.14.bubbatwo/drivers/net/phy/vitesse.c	2015-05-21 12:46:27.553570148 -0400
 @@ -31,6 +31,11 @@
  #define MII_VSC8244_EXTCON1_TX_SKEW	0x0800
  #define MII_VSC8244_EXTCON1_RX_SKEW	0x0200
@@ -754,9 +754,9 @@ diff -urN linux-3.18.13.orig/drivers/net/phy/vitesse.c linux-3.18.13.powerpc/dri
  	{ }
  };
  
-diff -urN linux-3.18.13.orig/drivers/rtc/rtc-isl1208.c linux-3.18.13.powerpc/drivers/rtc/rtc-isl1208.c
---- linux-3.18.13.orig/drivers/rtc/rtc-isl1208.c	2015-05-05 12:39:05.000000000 -0400
-+++ linux-3.18.13.powerpc/drivers/rtc/rtc-isl1208.c	2015-05-11 21:28:18.546813195 -0400
+diff -urN linux-3.18.14/drivers/rtc/rtc-isl1208.c linux-3.18.14.bubbatwo/drivers/rtc/rtc-isl1208.c
+--- linux-3.18.14/drivers/rtc/rtc-isl1208.c	2015-05-20 11:04:50.000000000 -0400
++++ linux-3.18.14.bubbatwo/drivers/rtc/rtc-isl1208.c	2015-05-21 12:46:27.553570148 -0400
 @@ -630,7 +630,7 @@
  static int
  isl1208_probe(struct i2c_client *client, const struct i2c_device_id *id)
