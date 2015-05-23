@@ -1,0 +1,16 @@
+
+comment "Note that fsarchiver needs a toolchain with UCLIBC_HAS_WORDEXP enabled"
+	depends on BR2_PACKAGE_FSARCHIVER
+
+config BR2_PACKAGE_FSARCHIVER
+	bool "fsarchiver"
+	select BR2_PACKAGE_ZLIB
+	select BR2_PACKAGE_BZIP2
+	select BR2_PACKAGE_LIBGCRYPT
+	select BR2_PACKAGE_UTIL_LINUX_LIBBLKID
+	select BR2_PACKAGE_E2FSPROGS
+	select BR2_PACKAGE_XZ
+	help
+	  fsarchiver is a system tool that allows you to save the contents of a file-system to a compressed archive file.
+	  
+	  The file-system can be restored on a partition which has a different size and it can be restored on a different file-system.
