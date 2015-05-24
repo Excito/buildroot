@@ -1,6 +1,0 @@
-config BR2_PACKAGE_PYTHON_PYBLKID
-	bool "python-pyblkid"
-	depends on BR2_PACKAGE_PYTHON
-	select BR2_PACKAGE_UTIL_LINUX_LIBBLKID
-	help
-	  Simple python binding for libblkid
