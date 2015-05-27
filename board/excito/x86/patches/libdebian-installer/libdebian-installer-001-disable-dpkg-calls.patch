@@ -1,0 +1,37 @@
+diff -urN libdebian-installer-0.99.orig/configure.ac libdebian-installer-0.99/configure.ac
+--- libdebian-installer-0.99.orig/configure.ac	2015-01-28 12:54:55.000000000 -0500
++++ libdebian-installer-0.99/configure.ac	2015-04-25 21:11:25.089009773 -0400
+@@ -1,4 +1,4 @@
+-AC_INIT([libdebian-installer],m4_esyscmd(dpkg-parsechangelog | perl -ne 'print $1 if m/^Version: (.*)$/;'))
++AC_INIT([libdebian-installer],0.99)
+ AM_INIT_AUTOMAKE([])
+ AM_MAINTAINER_MODE
+ 
+@@ -48,25 +48,11 @@
+ fi
+ 
+ AC_MSG_CHECKING([Debian CPU name])
+-DEB_HOST_ARCH_CPU="`dpkg-architecture -qDEB_HOST_ARCH_CPU 2>/dev/null`"
+-# Take account of old dpkg-architecture output.
+-if test -z "$DEB_HOST_ARCH_CPU"; then
+-	DEB_HOST_ARCH_CPU="`dpkg-architecture -qDEB_HOST_GNU_CPU`"
+-	if test "$DEB_HOST_ARCH_CPU" = x86_64; then
+-		DEB_HOST_ARCH_CPU=amd64
+-	fi
+-fi
++DEB_HOST_ARCH_CPU="i386"
+ AC_MSG_RESULT([$DEB_HOST_ARCH_CPU])
+ 
+ AC_MSG_CHECKING([Debian system name])
+-DEB_HOST_ARCH_OS="`dpkg-architecture -qDEB_HOST_ARCH_OS 2>/dev/null`"
+-# Take account of old dpkg-architecture output.
+-if test -z "$DEB_HOST_ARCH_OS"; then
+-	DEB_HOST_ARCH_OS="`dpkg-architecture -qDEB_HOST_GNU_SYSTEM | sed 's/-gnu//g'`"
+-	if test "$DEB_HOST_ARCH_OS" = gnu; then
+-		DEB_HOST_ARCH_OS=hurd
+-	fi
+-fi
++DEB_HOST_ARCH_OS="linux"
+ AC_MSG_RESULT([$DEB_HOST_ARCH_OS])
+ 
+ if test -f "$srcdir/src/system/subarch-$DEB_HOST_ARCH_CPU-$DEB_HOST_ARCH_OS.c"; then
