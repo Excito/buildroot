@@ -12,6 +12,7 @@
 | host dos2unix                           
 | host dosfstools                         
 | host e2fsprogs                          
+| host e2tools                            
 | host genext2fs                          
 | host genimage                           
 | host genpart                            
@@ -30,7 +31,7 @@
 | host sunxi-tools                        
 | host u-boot tools                       
 | host util-linux                         
-| host-e2tools                            
+| host-imx-usb loader                     
 
 |===================================================
 
