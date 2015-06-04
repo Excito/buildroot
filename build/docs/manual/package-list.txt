@@ -9,7 +9,7 @@
 | a10disp                                  <|  -> Hardware handling
 | acl                                      <|  -> System tools
 | acpid                                    <|  -> Hardware handling
-| adwaita icon theme                       <|  -> Libraries -> Graphics
+| adwaita icon theme                       <|  -> Fonts, icons, sounds and themes
 | aespipe                                  <|  -> Miscellaneous
 | agent++                                  <|  -> Libraries -> Networking
 | aiccu                                    <|  -> Networking applications
@@ -19,6 +19,7 @@
 | alsamixergui                             <|  -> Graphic libraries and applications (graphic/text)
 | am335x-pru-package                       <|  -> Hardware handling
 | am33x-cm3                                <|  -> Hardware handling -> Firmware
+| apache                                   <|  -> Networking applications
 | apitrace                                 <|  -> Graphic libraries and applications (graphic/text)
 | applewmproto                             <|  -> Graphic libraries and applications (graphic/text) -> X11R7 X protocols
 | appres                                   <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Applications
@@ -41,6 +42,7 @@
 | b43-firmware                             <|  -> Hardware handling -> Firmware
 | bandwidthd                               <|  -> Networking applications
 | bash                                     <|  -> Shell and utilities
+| batctl                                   <|  -> Networking applications
 | bc                                       <|  -> Miscellaneous
 | bcache tools                             <|  -> Hardware handling
 | bcusdk                                   <|  -> Networking applications
@@ -56,6 +58,7 @@
 | binutils                                 <|  -> Development tools
 | biosdevname                              <|  -> Hardware handling
 | bitmap                                   <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Applications
+| Bitstream Vera                           <|  -> Fonts, icons, sounds and themes
 | blackbox *(deprecated)*                  <|  -> Graphic libraries and applications (graphic/text)
 | blktrace                                 <|  -> Debugging, profiling and benchmark
 | bluez-utils                              <|  -> Networking applications
@@ -70,17 +73,20 @@
 | bridge-utils                             <|  -> Networking applications
 | bsdiff                                   <|  -> Development tools
 | btrfs-progs                              <|  -> Filesystem and flash utilities
+| bullet                                   <|  -> Libraries -> Graphics
 | bustle                                   <|  -> Development tools
 | BusyBox                                  <| 
 | bwm-ng                                   <|  -> Networking applications
 | bzip2                                    <|  -> Compressors and decompressors
 | c-ares                                   <|  -> Libraries -> Networking
+| c-periphery                              <|  -> Libraries -> Hardware handling
 | CA Certificates                          <|  -> Libraries -> Crypto
 | cache-calibrator                         <|  -> Debugging, profiling and benchmark
 | cairo                                    <|  -> Libraries -> Graphics
 | can-utils                                <|  -> Networking applications
 | canfestival                              <|  -> Libraries -> Networking
 | cblas/clapack                            <|  -> Libraries -> Other
+| cc-tool                                  <|  -> Hardware handling
 | ccid                                     <|  -> Libraries -> Hardware handling
 | ccrypt                                   <|  -> Shell and utilities
 | cdrkit                                   <|  -> Hardware handling
@@ -112,7 +118,7 @@
 | cryptodev-linux                          <|  -> Libraries -> Crypto -> cryptodev variant
 | cryptsetup                               <|  -> Hardware handling
 | ctorrent                                 <|  -> Networking applications
-| cups                                     <|  -> Networking applications
+| cups *(deprecated)*                      <|  -> Networking applications
 | curlftpfs (FUSE)                         <|  -> Filesystem and flash utilities
 | cvs                                      <|  -> Development tools
 | cwiid                                    <|  -> Hardware handling
@@ -128,7 +134,7 @@
 | dcron                                    <|  -> System tools
 | debianutils                              <|  -> System tools
 | Declarative module                       <|  -> Graphic libraries and applications (graphic/text)
-| DejaVu fonts                             <|  -> Graphic libraries and applications (graphic/text)
+| DejaVu fonts                             <|  -> Fonts, icons, sounds and themes
 | devmem2                                  <|  -> Hardware handling
 | dhcp (ISC)                               <|  -> Networking applications
 | dhcpcd                                   <|  -> Networking applications
@@ -150,6 +156,7 @@
 | dosfstools                               <|  -> Filesystem and flash utilities
 | dovecot                                  <|  -> Mail
 | dovecot-pigeonhole                       <|  -> Mail
+| drbd-utils                               <|  -> Networking applications
 | dri2proto                                <|  -> Graphic libraries and applications (graphic/text) -> X11R7 X protocols
 | dri3proto                                <|  -> Graphic libraries and applications (graphic/text) -> X11R7 X protocols
 | dropbear                                 <|  -> Networking applications
@@ -163,6 +170,7 @@
 | dvb-apps                                 <|  -> Hardware handling
 | dvbsnoop                                 <|  -> Hardware handling
 | dvdauthor                                <|  -> Audio and video applications
+| dvdrw-tools                              <|  -> Audio and video applications
 | e2fsprogs                                <|  -> Filesystem and flash utilities
 | e2tools                                  <|  -> Filesystem and flash utilities
 | ebtables                                 <|  -> Networking applications
@@ -179,6 +187,7 @@
 | enlightenment                            <|  -> Graphic libraries and applications (graphic/text)
 | Enlightenment Foundation Libraries       <|  -> Graphic libraries and applications (graphic/text)
 | enscript                                 <|  -> Interpreter languages and scripting
+| epoxy                                    <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Libraries
 | erlang                                   <|  -> Interpreter languages and scripting
 | erlang-goldrush                          <|  -> Interpreter languages and scripting -> Erlang libraries/modules
 | erlang-lager                             <|  -> Interpreter languages and scripting -> Erlang libraries/modules
@@ -282,7 +291,7 @@
 | fontconfig                               <|  -> Libraries -> Graphics
 | fontsproto                               <|  -> Graphic libraries and applications (graphic/text) -> X11R7 X protocols
 | fonttosfnt                               <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Applications
-| foomatic_filters                         <|  -> Networking applications
+| foomatic_filters *(deprecated)*          <|  -> Networking applications
 | fping                                    <|  -> Networking applications
 | freeradius-client                        <|  -> Libraries -> Networking
 | freerdp                                  <|  -> Graphic libraries and applications (graphic/text)
@@ -307,7 +316,7 @@
 | gesftpserver                             <|  -> Networking applications
 | getent                                   <|  -> System tools
 | gettext                                  <|  -> Development tools
-| ghostscript-fonts                        <|  -> Graphic libraries and applications (graphic/text)
+| ghostscript-fonts                        <|  -> Fonts, icons, sounds and themes
 | giblib                                   <|  -> Libraries -> Graphics
 | giflib                                   <|  -> Libraries -> Graphics
 | git                                      <|  -> Development tools
@@ -323,6 +332,7 @@
 | gnupg                                    <|  -> Shell and utilities
 | gnupg2                                   <|  -> Shell and utilities
 | gnuplot                                  <|  -> Graphic libraries and applications (graphic/text)
+| gnuradio                                 <|  -> Miscellaneous
 | gnutls                                   <|  -> Libraries -> Crypto
 | Google font directory                    <|  -> Miscellaneous
 | google-breakpad                          <|  -> Debugging, profiling and benchmark
@@ -346,6 +356,7 @@
 | gst-plugins-base                         <|  -> Audio and video applications
 | gst-plugins-good                         <|  -> Audio and video applications
 | gst-plugins-ugly                         <|  -> Audio and video applications
+| gst1-imx                                 <|  -> Audio and video applications
 | gst1-libav                               <|  -> Audio and video applications
 | gst1-plugins-bad                         <|  -> Audio and video applications
 | gst1-plugins-base                        <|  -> Audio and video applications
@@ -355,25 +366,26 @@
 | gstreamer 0.10                           <|  -> Audio and video applications
 | gstreamer 1.x                            <|  -> Audio and video applications
 | gtest                                    <|  -> Libraries -> Other
-| gtk engines                              <|  -> Libraries -> Graphics
+| gtk engines                              <|  -> Fonts, icons, sounds and themes
 | gtkperf (performance test for GTK2)      <|  -> Graphic libraries and applications (graphic/text)
 | guile                                    <|  -> Interpreter languages and scripting
-| gutenprint                               <|  -> Networking applications
+| gutenprint *(deprecated)*                <|  -> Networking applications
 | gvfs                                     <|  -> Hardware handling
 | gzip                                     <|  -> Compressors and decompressors
+| hans                                     <|  -> Networking applications
 | harfbuzz                                 <|  -> Libraries -> Graphics
 | haserl                                   <|  -> Interpreter languages and scripting
 | haveged                                  <|  -> Miscellaneous
 | hdparm                                   <|  -> Hardware handling
 | heirloom-mailx                           <|  -> Mail
 | hiawatha                                 <|  -> Networking applications
-| hicolor (default theme)                  <|  -> Libraries -> Graphics -> GTK Themes
-| hicolor icon theme                       <|  -> Libraries -> Graphics
+| hicolor icon theme                       <|  -> Fonts, icons, sounds and themes
 | hostapd                                  <|  -> Networking applications
-| hplip                                    <|  -> Networking applications
+| hplip *(deprecated)*                     <|  -> Networking applications
 | htop                                     <|  -> System tools
 | httping                                  <|  -> Networking applications
 | hwdata                                   <|  -> Hardware handling
+| hwloc                                    <|  -> Hardware handling
 | i2c-tools                                <|  -> Hardware handling
 | iceauth                                  <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Applications
 | ico                                      <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Applications
@@ -383,11 +395,13 @@
 | ifupdown                                 <|  -> Networking applications
 | igh-ethercat                             <|  -> Networking applications
 | igmpproxy                                <|  -> Networking applications
+| ijs                                      <|  -> Libraries -> Graphics
 | imagemagick                              <|  -> Graphic libraries and applications (graphic/text)
 | imlib2                                   <|  -> Libraries -> Graphics
 | imx-lib                                  <|  -> Hardware handling
 | imx-vpu                                  <|  -> Hardware handling
 | inadyn                                   <|  -> Networking applications
+| inconsolata                              <|  -> Fonts, icons, sounds and themes
 | infozip                                  <|  -> Compressors and decompressors
 | inotify-tools                            <|  -> Shell and utilities
 | input-event-daemon                       <|  -> Hardware handling
@@ -395,12 +409,15 @@
 | inputproto                               <|  -> Graphic libraries and applications (graphic/text) -> X11R7 X protocols
 | intel-microcode                          <|  -> Hardware handling
 | intltool                                 <|  -> Development tools
+| iodine                                   <|  -> Networking applications
 | iostat                                   <|  -> Hardware handling
+| iotop                                    <|  -> System tools
 | iozone                                   <|  -> Debugging, profiling and benchmark
 | iperf                                    <|  -> Networking applications
 | iperf3                                   <|  -> Networking applications
 | ipkg                                     <|  -> Package managers
 | ipmitool                                 <|  -> Hardware handling
+| ipmiutil                                 <|  -> Hardware handling
 | iproute2                                 <|  -> Networking applications
 | iprutils                                 <|  -> System tools
 | ipsec-tools                              <|  -> Networking applications
@@ -434,6 +451,7 @@
 | json-c                                   <|  -> Libraries -> JSON/XML
 | json-glib                                <|  -> Libraries -> JSON/XML
 | json-javascript                          <|  -> Libraries -> Javascript
+| jsoncpp                                  <|  -> Libraries -> JSON/XML
 | kbd                                      <|  -> Hardware handling
 | kbproto                                  <|  -> Graphic libraries and applications (graphic/text) -> X11R7 X protocols
 | kexec                                    <|  -> Debugging, profiling and benchmark
@@ -462,6 +480,7 @@
 | leafpad                                  <|  -> Graphic libraries and applications (graphic/text)
 | less                                     <|  -> Text editors and viewers
 | lesstif                                  <|  -> Libraries -> Graphics
+| leveldb                                  <|  -> Libraries -> Database
 | lftp                                     <|  -> Networking applications
 | libaio                                   <|  -> Libraries -> Hardware handling
 | libao                                    <|  -> Libraries -> Audio/Sound
@@ -490,9 +509,11 @@
 | libcuefile                               <|  -> Libraries -> Audio/Sound
 | libcurl                                  <|  -> Libraries -> Networking
 | libdaemon                                <|  -> Libraries -> Other
+| libdcadec                                <|  -> Libraries -> Multimedia
 | libdmtx                                  <|  -> Libraries -> Graphics
 | libdmx                                   <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Libraries
 | libdnet                                  <|  -> Libraries -> Networking
+| libdri2                                  <|  -> Libraries -> Graphics
 | libdrm                                   <|  -> Libraries -> Graphics
 | libdvbcsa                                <|  -> Libraries -> Multimedia
 | libdvbsi                                 <|  -> Libraries -> Multimedia
@@ -511,7 +532,7 @@
 | libelementary                            <|  -> Graphic libraries and applications (graphic/text)
 | libembryo                                <|  -> Graphic libraries and applications (graphic/text)
 | libenca                                  <|  -> Libraries -> Text and terminal handling
-| Liberation (Free fonts)                  <|  -> Graphic libraries and applications (graphic/text)
+| Liberation (Free fonts)                  <|  -> Fonts, icons, sounds and themes
 | libesmtp                                 <|  -> Mail
 | libestr                                  <|  -> Libraries -> Text and terminal handling
 | libethumb                                <|  -> Graphic libraries and applications (graphic/text)
@@ -526,12 +547,14 @@
 | libffi                                   <|  -> Libraries -> Other
 | libfontenc                               <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Libraries
 | libfreefare                              <|  -> Libraries -> Hardware handling
+| libfreeimage                             <|  -> Libraries -> Graphics
 | libfribidi                               <|  -> Libraries -> Text and terminal handling
 | libFS                                    <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Libraries
 | libfslcodec                              <|  -> Libraries -> Multimedia
 | libfslparser                             <|  -> Libraries -> Multimedia
 | libfslvpuwrap                            <|  -> Libraries -> Multimedia
 | libftdi                                  <|  -> Libraries -> Hardware handling
+| libftdi1                                 <|  -> Libraries -> Hardware handling
 | libfuse                                  <|  -> Libraries -> Filesystem
 | libgail                                  <|  -> Libraries -> Graphics
 | libgcrypt                                <|  -> Libraries -> Crypto
@@ -628,6 +651,7 @@
 | libsha1                                  <|  -> Libraries -> Crypto
 | libshairplay                             <|  -> Libraries -> Networking
 | libshout                                 <|  -> Libraries -> Networking
+| libsidplay2                              <|  -> Libraries -> Audio/Sound
 | libsigc++                                <|  -> Libraries -> Other
 | libsigrok                                <|  -> Libraries -> Hardware handling
 | libsigrokdecode                          <|  -> Libraries -> Hardware handling
@@ -653,7 +677,7 @@
 | libtpl                                   <|  -> Libraries -> Other
 | libubox                                  <|  -> Libraries -> Other
 | libuci                                   <|  -> Libraries -> Other
-| libungif                                 <|  -> Libraries -> Graphics
+| libungif *(deprecated)*                  <|  -> Libraries -> Graphics
 | libunistring                             <|  -> Libraries -> Text and terminal handling
 | libunwind                                <|  -> Libraries -> Other
 | libupnp                                  <|  -> Libraries -> Networking
@@ -718,6 +742,7 @@
 | linux-fusion communication layer for DirectFB multi <|  -> Graphic libraries and applications (graphic/text)
 | linux-pam                                <|  -> Libraries -> Other
 | linux-zigbee                             <|  -> Networking applications
+| lirc-tools                               <|  -> Hardware handling
 | listres                                  <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Applications
 | LiTE (toolbox engine)                    <|  -> Graphic libraries and applications (graphic/text)
 | live555                                  <|  -> Libraries -> Multimedia
@@ -754,6 +779,7 @@
 | lua-ev                                   <|  -> Interpreter languages and scripting -> Lua libraries/modules
 | lua-messagepack                          <|  -> Interpreter languages and scripting -> Lua libraries/modules
 | lua-msgpack-native                       <|  -> Interpreter languages and scripting -> Lua libraries/modules
+| lua-periphery                            <|  -> Interpreter languages and scripting -> Lua libraries/modules
 | lua-testmore                             <|  -> Interpreter languages and scripting -> Lua libraries/modules
 | luabitop                                 <|  -> Interpreter languages and scripting -> Lua libraries/modules
 | luacrypto                                <|  -> Interpreter languages and scripting -> Lua libraries/modules
@@ -786,6 +812,7 @@
 | Matchbox session common files            <|  -> Graphic libraries and applications (graphic/text)
 | Matchbox Virtual Keyboard                <|  -> Graphic libraries and applications (graphic/text)
 | MatchBox Window Manager                  <|  -> Graphic libraries and applications (graphic/text)
+| mc                                       <|  -> Text editors and viewers
 | mcelog                                   <|  -> Debugging, profiling and benchmark
 | mcookie                                  <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Utilities
 | mcrypt                                   <|  -> Miscellaneous
@@ -816,6 +843,7 @@
 | mongrel2                                 <|  -> Networking applications
 | monit                                    <|  -> System tools
 | mono                                     <|  -> Interpreter languages and scripting
+| mosquitto                                <|  -> Networking applications
 | mp4v2                                    <|  -> Libraries -> Audio/Sound
 | mpc                                      <|  -> Libraries -> Other
 | mpd                                      <|  -> Audio and video applications
@@ -873,6 +901,10 @@
 | numactl                                  <|  -> System tools
 | nut                                      <|  -> System tools
 | nuttcp                                   <|  -> Networking applications
+| nvidia-driver                            <|  -> Hardware handling
+| nvidia-tegra23                           <|  -> Hardware handling
+| nvidia-tegra23 binaries                  <|  -> Hardware handling
+| nvidia-tegra23 codecs                    <|  -> Hardware handling
 | ocf-linux                                <|  -> Libraries -> Crypto -> cryptodev variant
 | oclock                                   <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Applications
 | ocrad                                    <|  -> Graphic libraries and applications (graphic/text)
@@ -884,9 +916,11 @@
 | omniorb                                  <|  -> Libraries -> Networking
 | on2-8170-libs                            <|  -> Audio and video applications
 | on2-8170-modules                         <|  -> Hardware handling
+| open-plc-utils                           <|  -> Networking applications
 | open2300                                 <|  -> Hardware handling
 | opencore-amr                             <|  -> Libraries -> Audio/Sound
 | opencv                                   <|  -> Libraries -> Graphics
+| openjpeg                                 <|  -> Libraries -> Graphics
 | openldap                                 <|  -> Libraries -> Networking
 | openntpd                                 <|  -> Networking applications
 | openobex                                 <|  -> Networking applications
@@ -904,6 +938,7 @@
 | oprofile                                 <|  -> Debugging, profiling and benchmark
 | opus                                     <|  -> Libraries -> Audio/Sound
 | opus-tools                               <|  -> Audio and video applications
+| opusfile                                 <|  -> Libraries -> Audio/Sound
 | orbit                                    <|  -> Interpreter languages and scripting -> Lua libraries/modules
 | orc                                      <|  -> Libraries -> Other
 | oRTP                                     <|  -> Libraries -> Networking
@@ -920,16 +955,45 @@
 | pcsc-lite                                <|  -> Libraries -> Hardware handling
 | perf                                     <|  -> Debugging, profiling and benchmark
 | perl                                     <|  -> Interpreter languages and scripting
+| perl-crypt-openssl-random                <|  -> Interpreter languages and scripting -> Perl libraries/modules
+| perl-crypt-openssl-rsa                   <|  -> Interpreter languages and scripting -> Perl libraries/modules
 | perl-datetime-tiny                       <|  -> Interpreter languages and scripting -> Perl libraries/modules
+| perl-db-file                             <|  -> Interpreter languages and scripting -> Perl libraries/modules
+| perl-digest-hmac                         <|  -> Interpreter languages and scripting -> Perl libraries/modules
+| perl-digest-sha1                         <|  -> Interpreter languages and scripting -> Perl libraries/modules
+| perl-encode-detect                       <|  -> Interpreter languages and scripting -> Perl libraries/modules
+| perl-encode-locale                       <|  -> Interpreter languages and scripting -> Perl libraries/modules
+| perl-file-listing                        <|  -> Interpreter languages and scripting -> Perl libraries/modules
+| perl-file-util                           <|  -> Interpreter languages and scripting -> Perl libraries/modules
 | perl-gd                                  <|  -> Interpreter languages and scripting -> Perl libraries/modules
 | perl-gdgraph                             <|  -> Interpreter languages and scripting -> Perl libraries/modules
 | perl-gdtextutil                          <|  -> Interpreter languages and scripting -> Perl libraries/modules
+| perl-html-parser                         <|  -> Interpreter languages and scripting -> Perl libraries/modules
+| perl-html-tagset                         <|  -> Interpreter languages and scripting -> Perl libraries/modules
+| perl-http-cookies                        <|  -> Interpreter languages and scripting -> Perl libraries/modules
+| perl-http-daemon                         <|  -> Interpreter languages and scripting -> Perl libraries/modules
+| perl-http-date                           <|  -> Interpreter languages and scripting -> Perl libraries/modules
+| perl-http-message                        <|  -> Interpreter languages and scripting -> Perl libraries/modules
+| perl-http-negotiate                      <|  -> Interpreter languages and scripting -> Perl libraries/modules
+| perl-io-html                             <|  -> Interpreter languages and scripting -> Perl libraries/modules
 | perl-io-socket-ssl                       <|  -> Interpreter languages and scripting -> Perl libraries/modules
 | perl-json-tiny                           <|  -> Interpreter languages and scripting -> Perl libraries/modules
+| perl-libwww-perl                         <|  -> Interpreter languages and scripting -> Perl libraries/modules
+| perl-lwp-mediatypes                      <|  -> Interpreter languages and scripting -> Perl libraries/modules
+| perl-mail-dkim                           <|  -> Interpreter languages and scripting -> Perl libraries/modules
+| perl-mailtools                           <|  -> Interpreter languages and scripting -> Perl libraries/modules
+| perl-mime-base64                         <|  -> Interpreter languages and scripting -> Perl libraries/modules
 | perl-mojolicious                         <|  -> Interpreter languages and scripting -> Perl libraries/modules
+| perl-net-dns                             <|  -> Interpreter languages and scripting -> Perl libraries/modules
+| perl-net-http                            <|  -> Interpreter languages and scripting -> Perl libraries/modules
 | perl-net-ssleay                          <|  -> Interpreter languages and scripting -> Perl libraries/modules
+| perl-netaddr-ip                          <|  -> Interpreter languages and scripting -> Perl libraries/modules
 | perl-path-tiny                           <|  -> Interpreter languages and scripting -> Perl libraries/modules
+| perl-time-hires                          <|  -> Interpreter languages and scripting -> Perl libraries/modules
+| perl-timedate                            <|  -> Interpreter languages and scripting -> Perl libraries/modules
 | perl-try-tiny                            <|  -> Interpreter languages and scripting -> Perl libraries/modules
+| perl-uri                                 <|  -> Interpreter languages and scripting -> Perl libraries/modules
+| perl-www-robotrules                      <|  -> Interpreter languages and scripting -> Perl libraries/modules
 | perl-xml-libxml                          <|  -> Interpreter languages and scripting -> Perl libraries/modules
 | perl-xml-namespacesupport                <|  -> Interpreter languages and scripting -> Perl libraries/modules
 | perl-xml-sax                             <|  -> Interpreter languages and scripting -> Perl libraries/modules
@@ -957,6 +1021,7 @@
 | portmap                                  <|  -> Networking applications
 | postgresql                               <|  -> Libraries -> Database
 | powerpc-utils                            <|  -> System tools
+| powertop                                 <|  -> Hardware handling
 | pppd                                     <|  -> Networking applications
 | pps-tools                                <|  -> Hardware handling
 | pptp-linux                               <|  -> Networking applications
@@ -972,6 +1037,7 @@
 | ptpd                                     <|  -> Networking applications
 | ptpd2                                    <|  -> Networking applications
 | pulseaudio                               <|  -> Audio and video applications
+| pulseview                                <|  -> Hardware handling
 | pure-ftpd                                <|  -> Networking applications
 | pv                                       <|  -> Debugging, profiling and benchmark
 | pwgen                                    <|  -> System tools
@@ -981,6 +1047,7 @@
 | python-certifi                           <|  -> Interpreter languages and scripting -> external python modules
 | python-cffi                              <|  -> Interpreter languages and scripting -> external python modules
 | python-cheetah                           <|  -> Interpreter languages and scripting -> external python modules
+| python-cherrypy                          <|  -> Interpreter languages and scripting -> external python modules
 | python-coherence                         <|  -> Interpreter languages and scripting -> external python modules
 | python-configobj                         <|  -> Interpreter languages and scripting -> external python modules
 | python-configshell-fb                    <|  -> Interpreter languages and scripting -> external python modules
@@ -1005,7 +1072,9 @@
 | python-json-schema-validator             <|  -> Interpreter languages and scripting -> external python modules
 | python-keyring                           <|  -> Interpreter languages and scripting -> external python modules
 | python-libconfig                         <|  -> Interpreter languages and scripting -> external python modules
+| python-lxml                              <|  -> Interpreter languages and scripting -> external python modules
 | python-mad                               <|  -> Interpreter languages and scripting -> external python modules
+| python-mako                              <|  -> Interpreter languages and scripting -> external python modules
 | python-markdown                          <|  -> Interpreter languages and scripting -> external python modules
 | python-markupsafe                        <|  -> Interpreter languages and scripting -> external python modules
 | python-meld3                             <|  -> Interpreter languages and scripting -> external python modules
@@ -1025,6 +1094,7 @@
 | python-pyinotify                         <|  -> Interpreter languages and scripting -> external python modules
 | python-pyparsing                         <|  -> Interpreter languages and scripting -> external python modules
 | python-pypcap                            <|  -> Interpreter languages and scripting -> external python modules
+| python-pyqt                              <|  -> Interpreter languages and scripting -> external python modules
 | python-pyro                              <|  -> Interpreter languages and scripting -> external python modules
 | python-pysendfile                        <|  -> Interpreter languages and scripting -> external python modules
 | python-pysnmp                            <|  -> Interpreter languages and scripting -> external python modules
@@ -1038,7 +1108,9 @@
 | python-serial                            <|  -> Interpreter languages and scripting -> external python modules
 | python-setuptools                        <|  -> Interpreter languages and scripting -> external python modules
 | python-simplejson                        <|  -> Interpreter languages and scripting -> external python modules
+| python-sip                               <|  -> Interpreter languages and scripting -> external python modules
 | python-six                               <|  -> Interpreter languages and scripting -> external python modules
+| python-spidev                            <|  -> Interpreter languages and scripting -> external python modules
 | python-thrift                            <|  -> Interpreter languages and scripting -> external python modules
 | python-tornado                           <|  -> Interpreter languages and scripting -> external python modules
 | python-twisted                           <|  -> Interpreter languages and scripting -> external python modules
@@ -1046,6 +1118,7 @@
 | python-versiontools                      <|  -> Interpreter languages and scripting -> external python modules
 | python-webpy                             <|  -> Interpreter languages and scripting -> external python modules
 | python-werkzeug                          <|  -> Interpreter languages and scripting -> external python modules
+| python-ws4py                             <|  -> Interpreter languages and scripting -> external python modules
 | python-zope-interface                    <|  -> Interpreter languages and scripting -> external python modules
 | python3                                  <|  -> Interpreter languages and scripting
 | qdecoder                                 <|  -> Libraries -> Networking
@@ -1054,7 +1127,9 @@
 | qhull                                    <|  -> Libraries -> Other
 | qjson                                    <|  -> Graphic libraries and applications (graphic/text)
 | qlibc                                    <|  -> Libraries -> Other
+| qpdf                                     <|  -> Miscellaneous
 | Qt                                       <|  -> Graphic libraries and applications (graphic/text)
+| qt-webkit-kiosk                          <|  -> Graphic libraries and applications (graphic/text)
 | Qt5                                      <|  -> Graphic libraries and applications (graphic/text)
 | qt5base                                  <|  -> Graphic libraries and applications (graphic/text)
 | qt5cinex                                 <|  -> Graphic libraries and applications (graphic/text)
@@ -1111,7 +1186,7 @@
 | rtptools                                 <|  -> Networking applications
 | rubix                                    <|  -> Games
 | ruby                                     <|  -> Interpreter languages and scripting
-| samba                                    <|  -> Networking applications
+| samba *(deprecated)*                     <|  -> Networking applications
 | samba4                                   <|  -> Networking applications
 | sane-backends                            <|  -> Hardware handling
 | SawMan (Window Manager)                  <|  -> Graphic libraries and applications (graphic/text)
@@ -1142,6 +1217,7 @@
 | sigrok-cli                               <|  -> Hardware handling
 | simicsfs                                 <|  -> Filesystem and flash utilities
 | sispmctl                                 <|  -> Hardware handling
+| sl                                       <|  -> Games
 | slang                                    <|  -> Libraries -> Text and terminal handling
 | slirp                                    <|  -> Libraries -> Networking
 | smack                                    <|  -> System tools
@@ -1156,8 +1232,9 @@
 | socat                                    <|  -> Networking applications
 | socketcand                               <|  -> Networking applications
 | sofia-sip                                <|  -> Libraries -> Networking
-| sound-theme-borealis                     <|  -> Miscellaneous
-| sound-theme-freedesktop                  <|  -> Miscellaneous
+| softether                                <|  -> Networking applications
+| sound-theme-borealis                     <|  -> Fonts, icons, sounds and themes
+| sound-theme-freedesktop                  <|  -> Fonts, icons, sounds and themes
 | sox                                      <|  -> Audio and video applications
 | spawn-fcgi                               <|  -> Networking applications
 | speex                                    <|  -> Libraries -> Audio/Sound
@@ -1189,6 +1266,7 @@
 | SVG Module                               <|  -> Graphic libraries and applications (graphic/text)
 | sylpheed                                 <|  -> Mail
 | synergy                                  <|  -> Graphic libraries and applications (graphic/text)
+| sysdig                                   <|  -> Debugging, profiling and benchmark
 | syslogd & klogd                          <|  -> System tools
 | sysprof                                  <|  -> Debugging, profiling and benchmark
 | sysstat                                  <|  -> Hardware handling
@@ -1218,9 +1296,12 @@
 | tinyhttpd                                <|  -> Networking applications
 | tinymembench                             <|  -> Debugging, profiling and benchmark
 | tinyxml                                  <|  -> Libraries -> JSON/XML
+| tinyxml2                                 <|  -> Libraries -> JSON/XML
 | tmux                                     <|  -> Shell and utilities
 | tn5250                                   <|  -> Networking applications
+| tor                                      <|  -> Networking applications
 | torsmo                                   <|  -> Graphic libraries and applications (graphic/text)
+| tovid                                    <|  -> Audio and video applications
 | trace-cmd                                <|  -> Debugging, profiling and benchmark
 | transmission                             <|  -> Networking applications
 | tree                                     <|  -> Development tools
@@ -1238,6 +1319,7 @@
 | uemacs                                   <|  -> Text editors and viewers
 | ulogd                                    <|  -> Networking applications
 | unionfs (FUSE)                           <|  -> Filesystem and flash utilities
+| unixodbc                                 <|  -> Libraries -> Database
 | upmpdcli                                 <|  -> Audio and video applications
 | urg                                      <|  -> Libraries -> Hardware handling
 | usb_modeswitch                           <|  -> Hardware handling
@@ -1271,11 +1353,13 @@
 | webp                                     <|  -> Libraries -> Graphics
 | webrtc-audio-processing                  <|  -> Libraries -> Audio/Sound
 | weston                                   <|  -> Graphic libraries and applications (graphic/text)
+| wf111                                    <|  -> Hardware handling
 | wget                                     <|  -> Networking applications
 | whetstone                                <|  -> Debugging, profiling and benchmark
 | which                                    <|  -> Shell and utilities
 | whois                                    <|  -> Networking applications
 | windowswmproto                           <|  -> Graphic libraries and applications (graphic/text) -> X11R7 X protocols
+| wine                                     <|  -> Miscellaneous
 | wipe                                     <|  -> Hardware handling
 | wireless tools                           <|  -> Networking applications
 | wireless-regdb                           <|  -> Networking applications
@@ -1296,13 +1380,16 @@
 | xcalc                                    <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Applications
 | xcb-proto                                <|  -> Graphic libraries and applications (graphic/text) -> X11R7 X protocols
 | xcb-util                                 <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Libraries
+| xcb-util-cursor                          <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Libraries
 | xcb-util-image                           <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Libraries
 | xcb-util-keysyms                         <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Libraries
+| xcb-util-renderutil                      <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Libraries
 | xcb-util-wm                              <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Libraries
 | xclipboard                               <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Applications
 | xclock                                   <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Applications
 | xcmiscproto                              <|  -> Graphic libraries and applications (graphic/text) -> X11R7 X protocols
 | xcmsdb                                   <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Applications
+| xcompmgr                                 <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Applications
 | xconsole                                 <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Applications
 | xcursor-transparent-theme                <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Other data
 | xcursorgen                               <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Applications
@@ -1321,11 +1408,12 @@
 | xf86-input-evdev                         <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Drivers
 | xf86-input-joystick                      <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Drivers
 | xf86-input-keyboard                      <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Drivers
+| xf86-input-libinput                      <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Drivers
 | xf86-input-mouse                         <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Drivers
 | xf86-input-synaptics                     <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Drivers
 | xf86-input-tslib                         <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Drivers
 | xf86-input-vmmouse                       <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Drivers
-| xf86-input-void                          <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Drivers
+| xf86-input-void *(deprecated)*           <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Drivers
 | xf86-video-ark                           <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Drivers
 | xf86-video-ast                           <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Drivers
 | xf86-video-ati                           <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Drivers
@@ -1336,6 +1424,8 @@
 | xf86-video-glide                         <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Drivers
 | xf86-video-glint                         <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Drivers
 | xf86-video-i128                          <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Drivers
+| xf86-video-imx                           <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Drivers
+| xf86-video-imx-viv                       <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Drivers
 | xf86-video-intel                         <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Drivers
 | xf86-video-mach64                        <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Drivers
 | xf86-video-mga                           <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Drivers
@@ -1360,6 +1450,7 @@
 | xf86driproto                             <|  -> Graphic libraries and applications (graphic/text) -> X11R7 X protocols
 | xf86vidmodeproto                         <|  -> Graphic libraries and applications (graphic/text) -> X11R7 X protocols
 | xfd                                      <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Applications
+| xfindproxy                               <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Applications
 | xfontsel                                 <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Applications
 | xfs                                      <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Applications
 | xfsinfo                                  <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Applications
@@ -1397,6 +1488,7 @@
 | xpr                                      <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Applications
 | xprop                                    <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Applications
 | xproto                                   <|  -> Graphic libraries and applications (graphic/text) -> X11R7 X protocols
+| xproxymanagementprotocol                 <|  -> Graphic libraries and applications (graphic/text) -> X11R7 X protocols
 | xrandr                                   <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Applications
 | xrdb                                     <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Applications
 | xrefresh                                 <|  -> Graphic libraries and applications (graphic/text) -> X11R7 Applications
