@@ -1,10 +1,10 @@
 ## Excito Buildroot
 
-This is the 2015.02 buildroot source tree with the B3 and B2 board modifications to generate an updated rescue/install system.
+This is the 2015.05 buildroot source tree with the B3 and B2 board modifications to generate an updated rescue/install system. It can also generate an x86 'livecd' for testing purpose.
 
 ## Content
 
-For now the generated image contains only network tools and a ssh server to connect remotely to connect to the system.
+For now the generated image contains only network tools, ssh, ftp and telnet server to connect to the system.
 
 ## Building
 
@@ -21,7 +21,16 @@ make excito_bubbatwo_defconfig
 make
 ```
 
-The generated install.itb file will be available in output/images
+for x86:
+```
+make excito_x86_defconfig
+make
+```
+
+The generated file will be available in output/images :
+ - install.itb for the b3
+ - 8313E21.itb for bubbatwo
+ - rootfs.iso9660 for x86
 
 ## Using
 
