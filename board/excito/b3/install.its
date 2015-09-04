@@ -25,7 +25,7 @@
 
 		ramdisk@1 {
 			description = "Excito B3 rescue/install system";
-			data = /incbin/("./rootfs.ext2.gz");
+			data = /incbin/("./rootfs.cpio.gz");
 			type = "ramdisk";
 			arch = "arm";
 			os = "linux";

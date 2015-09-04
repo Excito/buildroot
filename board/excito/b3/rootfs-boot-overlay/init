@@ -1,0 +1,28 @@
+#!/bin/busybox ash
+
+function endError() {
+	if [ -e /sys/devices/platform/bubbatwo/ledfreq ] ; then
+		echo 32768 > /sys/devices/platform/bubbatwo/ledfreq
+		echo blink > /sys/devices/platform/bubbatwo/ledmode
+	else
+		echo 0 > /sys/class/leds/bubba3:green:programming/brightness
+		echo 0 > /sys/class/leds/bubba3:blue:active/brightness
+		echo 1 > /sys/class/leds/bubba3:red:error/brightness
+	fi
+	exec /bin/busybox ash
+}
+
+function unzip() {
+	zcat /mnt/mnt/usb/rootfs.cpio.gz | (cd /mnt ; cpio -id) || endError
+	exec switch_root /mnt /init
+}
+
+mount -t sysfs none /sys
+mount -t tmpfs none /mnt
+mkdir -p /mnt/mnt/usb
+mount -t vfat /dev/sda1 /mnt/mnt/usb && unzip || sleep 2
+mount -t vfat /dev/sda1 /mnt/mnt/usb && unzip || sleep 2
+mount -t vfat /dev/sda1 /mnt/mnt/usb && unzip || sleep 2
+mount -t vfat /dev/sda1 /mnt/mnt/usb && unzip || sleep 2
+mount -t vfat /dev/sda1 /mnt/mnt/usb && unzip || sleep 2
+endError

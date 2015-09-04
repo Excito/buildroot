@@ -12,4 +12,6 @@ echo "Generating install.itb"
 
 mkimage -f install.its install.itb
 
+cp install.itb $BASE_DIR/excito
+
 rm install.its cache_head_patch zImage.b3
