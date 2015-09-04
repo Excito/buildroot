@@ -1,6 +1,6 @@
-#!/bin/busybox ash
+#!/bin/ash
 
-function endError() {
+endError() {
 	if [ -e /sys/devices/platform/bubbatwo/ledfreq ] ; then
 		echo 32768 > /sys/devices/platform/bubbatwo/ledfreq
 		echo blink > /sys/devices/platform/bubbatwo/ledmode
@@ -9,10 +9,10 @@ function endError() {
 		echo 0 > /sys/class/leds/bubba3:blue:active/brightness
 		echo 1 > /sys/class/leds/bubba3:red:error/brightness
 	fi
-	exec /bin/busybox ash
+	exec /bin/ash
 }
 
-function unzip() {
+unzip() {
 	zcat /mnt/mnt/usb/rootfs.cpio.gz | (cd /mnt ; cpio -id) || endError
 	exec switch_root /mnt /init
 }
