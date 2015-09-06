@@ -13,7 +13,8 @@ endError() {
 }
 
 unzip() {
-	zcat /mnt/mnt/usb/rootfs.cpio.gz | (cd /mnt ; cpio -id) || endError
+	( zcat /mnt/mnt/usb/install/rootfs.cpio.gz | (cd /mnt ; cpio -id) ) || endError
+	umount /sys
 	exec switch_root /mnt /init
 }
 
