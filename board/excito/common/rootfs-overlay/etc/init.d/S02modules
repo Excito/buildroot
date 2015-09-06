@@ -7,7 +7,7 @@ start() {
 	while read m ; do
 		if [ ${#m} -eq 0 ] ; then
 			continue
-		elif [ ${m[0]} == "#" ] ; then
+		elif [ ${m:0:1} == "#" ] ; then
 			continue
 		else
 			modprobe $m
