@@ -10,6 +10,7 @@ config BR2_PACKAGE_FSARCHIVER
 	select BR2_PACKAGE_UTIL_LINUX_LIBBLKID
 	select BR2_PACKAGE_E2FSPROGS
 	select BR2_PACKAGE_XZ
+	select BR2_PACKAGE_ATTR
 	help
 	  fsarchiver is a system tool that allows you to save the contents of a file-system to a compressed archive file.
 	  
