@@ -1,0 +1,25 @@
+#!/bin/sh
+
+[ -e /etc/modules ] || exit 0
+
+start() {
+    echo "Loading platform modules ..."
+	while read m ; do
+		if [ ${#m} -eq 0 ] ; then
+			continue
+		elif [ ${m[0]} == "#" ] ; then
+			continue
+		else
+			modprobe $m
+		fi
+	done < /etc/modules
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  *)
+    echo "Usage: $0 {start}"
+    exit 1
+esac

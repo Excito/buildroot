@@ -1,0 +1,21 @@
+# Modules for the b3
+
+# General
+i2c_dev
+
+# Network
+mvmdio
+mv643xx_eth
+
+# Raid
+raid0
+raid1
+
+# MTD
+spi_orion
+
+# RTC
+rtc-mv
+
+# SATA
+sata_mv
