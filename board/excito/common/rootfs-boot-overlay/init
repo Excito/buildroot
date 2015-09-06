@@ -13,6 +13,7 @@ endError() {
 }
 
 unzip() {
+	echo "Copying step 2 files to tmpfs ..."
 	( zcat /mnt/mnt/usb/install/rootfs.cpio.gz | (cd /mnt ; cpio -id) ) || endError
 	umount /sys
 	exec switch_root /mnt /init
