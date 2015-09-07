@@ -34,8 +34,8 @@
 		};
 
 		fdt@1 {
-			description = "8313E21-fdt";
-			data = /incbin/("8313E21.dtb");
+			description = "install-fdt";
+			data = /incbin/("install.dtb");
 			type = "flat_dt";
 			arch = "ppc";
 			compression = "none";

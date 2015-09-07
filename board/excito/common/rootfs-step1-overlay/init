@@ -13,10 +13,15 @@ endError() {
 }
 
 unzip() {
-	echo "Copying step 2 files to tmpfs ..."
-	( zcat /mnt/mnt/usb/install/rootfs.cpio.gz | (cd /mnt ; cpio -id) ) || endError
-	umount /sys
-	exec switch_root /mnt /init
+	if [ -e /mnt/mnt/usb/install/rootfs.cpio.gz ] ; then
+		echo "Copying step 2 files to tmpfs ..."
+		zcat /mnt/mnt/usb/install/rootfs.cpio.gz | (cd /mnt ; cpio -id) || endError
+		umount /sys
+		exec switch_root /mnt /init
+	else
+		echo "roofs.cpio.gz not found !"
+		endError
+	fi
 }
 
 mount -t sysfs none /sys
