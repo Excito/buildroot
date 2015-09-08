@@ -9,7 +9,6 @@ BR2_TOOLCHAIN_BUILDROOT_WCHAR=y
 BR2_TOOLCHAIN_BUILDROOT_CXX=y
 BR2_TARGET_GENERIC_HOSTNAME="bubbatwo-install"
 BR2_TARGET_GENERIC_ISSUE="Welcome to Excito Bubba|2 Rescue/Install"
-BR2_TARGET_GENERIC_PASSWD_SHA512=y
 BR2_TARGET_GENERIC_ROOT_PASSWD="excito"
 BR2_SYSTEM_BIN_SH_BASH=y
 BR2_ROOTFS_OVERLAY="board/excito/common/rootfs-step2-overlay board/excito/bubbatwo/rootfs-step2-overlay"
