@@ -1,7 +1,5 @@
 BR2_powerpc=y
 BR2_powerpc_e300c3=y
-BR2_CCACHE=y
-BR2_CCACHE_DIR="$(HOME)/.buildroot-ccache-step1"
 BR2_KERNEL_HEADERS_3_18=y
 BR2_PTHREADS_NONE=y
 # BR2_UCLIBC_INSTALL_UTILS is not set
