@@ -1,5 +1,5 @@
 #!/bin/sh
 
 if [ "$IFACE" != "lo" ] ; then
-	/usr/sbin/rdate time.nist.gov
+	/usr/bin/ntpdate 0.pool.ntp.org
 fi
