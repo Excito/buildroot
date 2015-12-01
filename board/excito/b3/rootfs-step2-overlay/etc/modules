@@ -19,3 +19,6 @@ rtc-mv
 
 # SATA
 sata_mv
+
+# Filesystems
+ext3

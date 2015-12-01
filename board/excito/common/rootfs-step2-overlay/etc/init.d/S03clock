@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+# Sets the system clock from RTC at boot and saves it on reboot
+#
+
+case "$1" in
+  start)
+	echo -n "Setting clock from RTC: "
+	hwclock -s && echo "OK" || echo "Failed"
+	;;
+  stop)
+	echo -n "Saving clock to RTC: "
+	hwclock -w && echo "OK" || echo "Failed"
+	;;
+ *)
+	echo $"Usage: $0 {start|stop}"
+	exit 1
+esac
+
+exit $?

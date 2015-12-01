@@ -22,3 +22,6 @@ physmap
 
 # SATA
 sata_sil
+
+# Filesystems
+ext3
