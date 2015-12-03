@@ -1,7 +1,2 @@
-# Excito default install/rescue network configuration
-
 auto lo
 iface lo inet loopback
-
-iface eth0 inet dhcp
-iface eth1 inet dhcp

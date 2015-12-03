@@ -1,0 +1,7 @@
+config BR2_PACKAGE_EXCITO_INSTALLER
+	bool "excito-installer"
+	select BR2_PACKAGE_PYTHON
+	select BR2_PACKAGE_PYTHON_DAEMON
+	select BR2_PACKAGE_PYTHON_NETIFACES
+	help
+	  excito-installer is a set of python scripts to install excito images
