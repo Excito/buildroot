@@ -1,6 +1,4 @@
 BR2_arm=y
-BR2_CCACHE=y
-BR2_CCACHE_DIR="$(HOME)/.buildroot-ccache-step2"
 BR2_GLOBAL_PATCH_DIR="board/excito/b3/patches"
 BR2_KERNEL_HEADERS_3_18=y
 BR2_UCLIBC_CONFIG_FRAGMENT_FILES="board/excito/common/uclibc-step2.config"

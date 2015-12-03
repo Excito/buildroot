@@ -5,7 +5,7 @@
 ################################################################################
 
 JETRING_VERSION = 0.20
-JETRING_SITE = http://ftp.de.debian.org/debian/pool/main/j/jetring/
+JETRING_SITE = http://ftp.de.debian.org/debian/pool/main/j/jetring
 JETRING_SOURCE = jetring_$(JETRING_VERSION).tar.gz
 JETRING_DEPENDENCIES = host-gnupg
 JETRING_LICENSE_FILES = debian/copyright

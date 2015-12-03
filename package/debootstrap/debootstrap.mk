@@ -6,7 +6,7 @@
 
 DEBOOTSTRAP_VERSION = 1.0.67
 DEBOOTSTRAP_SOURCE = debootstrap_$(DEBOOTSTRAP_VERSION).tar.gz
-DEBOOTSTRAP_SITE = http://ftp.de.debian.org/debian/pool/main/d/debootstrap/
+DEBOOTSTRAP_SITE = http://ftp.de.debian.org/debian/pool/main/d/debootstrap
 DEBOOTSTRAP_LICENSE_FILE = debian/copyright
 DEBOOTSTRAP_DEPENDENCIES = host-fakeroot
 
