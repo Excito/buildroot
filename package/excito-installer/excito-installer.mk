@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-EXCITO_INSTALLER_VERSION = eb2aabc
+EXCITO_INSTALLER_VERSION = 1.0
 EXCITO_INSTALLER_SITE = $(call github,Excito,installer,$(EXCITO_INSTALLER_VERSION))
 
 define EXCITO_INSTALLER_INSTALL_TARGET_CMDS
