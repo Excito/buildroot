@@ -1,4 +1,6 @@
 BR2_arm=y
+BR2_CCACHE=y
+BR2_CCACHE_DIR="$(HOME)/.buildroot-ccache-b3-step1"
 BR2_KERNEL_HEADERS_3_18=y
 BR2_PTHREADS_NONE=y
 # BR2_UCLIBC_INSTALL_UTILS is not set
