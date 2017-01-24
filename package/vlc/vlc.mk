@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-VLC_VERSION = 2.2.1
+VLC_VERSION = 2.2.4
 VLC_SITE = http://get.videolan.org/vlc/$(VLC_VERSION)
 VLC_SOURCE = vlc-$(VLC_VERSION).tar.xz
 VLC_LICENSE = GPLv2+ LGPLv2.1+
@@ -55,6 +55,11 @@ VLC_CONF_OPTS += \
 	--disable-vdpau \
 	--disable-addonmanagermodules \
 	--enable-run-as-root \
+
+# Uses __atomic_fetch_add_4
+ifeq ($(BR2_TOOLCHAIN_HAS_LIBATOMIC),y)
+VLC_CONF_ENV += LIBS="-latomic"
+endif
 
 # Building static and shared doesn't work, so force static off.
 ifeq ($(BR2_STATIC_LIBS),)
@@ -137,10 +142,7 @@ VLC_CONF_OPTS += --disable-flac
 endif
 
 ifeq ($(BR2_PACKAGE_FREERDP),y)
-VLC_CONF_OPTS += --enable-freerdp
 VLC_DEPENDENCIES += freerdp
-else
-VLC_CONF_OPTS += --disable-libfreerdp
 endif
 
 ifeq ($(BR2_PACKAGE_HAS_LIBGL),y)
@@ -179,6 +181,27 @@ else
 VLC_CONF_OPTS += --disable-libass
 endif
 
+ifeq ($(BR2_PACKAGE_LIBBLURAY),y)
+VLC_CONF_OPTS += --enable-bluray
+VLC_DEPENDENCIES += libbluray
+else
+VLC_CONF_OPTS += --disable-bluray
+endif
+
+ifeq ($(BR2_PACKAGE_LIBCDDB),y)
+VLC_CONF_OPTS += --enable-libcddb
+VLC_DEPENDENCIES += libcddb
+else
+VLC_CONF_OPTS += --disable-libcddb
+endif
+
+ifeq ($(BR2_PACKAGE_LIBDVBPSI),y)
+VLC_CONF_OPTS += --enable-dvbpsi
+VLC_DEPENDENCIES += libdvbpsi
+else
+VLC_CONF_OPTS += --disable-dvbpsi
+endif
+
 ifeq ($(BR2_PACKAGE_LIBGCRYPT),y)
 VLC_CONF_OPTS += --enable-libgcrypt
 VLC_DEPENDENCIES += libgcrypt
@@ -193,6 +216,13 @@ VLC_CONF_OPTS += --enable-mad
 VLC_DEPENDENCIES += libmad
 else
 VLC_CONF_OPTS += --disable-mad
+endif
+
+ifeq ($(BR2_PACKAGE_LIBMATROSKA),y)
+VLC_CONF_OPTS += --enable-mkv
+VLC_DEPENDENCIES += libmatroska
+else
+VLC_CONF_OPTS += --disable-mkv
 endif
 
 ifeq ($(BR2_PACKAGE_LIBMODPLUG),y)
@@ -223,6 +253,13 @@ else
 VLC_CONF_OPTS += --disable-svg --disable-svgdec
 endif
 
+ifeq ($(BR2_PACKAGE_LIBSSH2),y)
+VLC_CONF_OPTS += --enable-sftp
+VLC_DEPENDENCIES += libssh2
+else
+VLC_CONF_OPTS += --disable-sftp
+endif
+
 ifeq ($(BR2_PACKAGE_LIBSIDPLAY2),y)
 VLC_CONF_OPTS += --enable-sid
 VLC_DEPENDENCIES += libsidplay2
@@ -242,6 +279,13 @@ VLC_CONF_OPTS += --enable-upnp
 VLC_DEPENDENCIES += libupnp
 else
 VLC_CONF_OPTS += --disable-upnp
+endif
+
+ifeq ($(BR2_PACKAGE_LIBVNCSERVER),y)
+VLC_CONF_OPTS += --enable-vnc
+VLC_DEPENDENCIES += libvncserver
+else
+VLC_CONF_OPTS += --disable-vnc
 endif
 
 ifeq ($(BR2_PACKAGE_LIBVORBIS),y)
@@ -292,6 +336,17 @@ VLC_CONF_OPTS += --enable-lua
 VLC_DEPENDENCIES += lua host-lua
 else
 VLC_CONF_OPTS += --disable-lua
+endif
+
+ifeq ($(BR2_PACKAGE_MINIZIP),y)
+VLC_DEPENDENCIES += minizip
+endif
+
+ifeq ($(BR2_PACKAGE_MUSEPACK),y)
+VLC_CONF_OPTS += --enable-mpc
+VLC_DEPENDENCIES += musepack
+else
+VLC_CONF_OPTS += --disable-mpc
 endif
 
 ifeq ($(BR2_PACKAGE_QT_GUI_MODULE),y)
@@ -347,11 +402,22 @@ else
 VLC_CONF_OPTS += --disable-udev
 endif
 
+ifeq ($(BR2_PACKAGE_XCB_UTIL_KEYSYMS),y)
+VLC_CONF_OPTS += --enable-xcb
+VLC_DEPENDENCIES += xcb-util-keysyms
+else
+VLC_CONF_OPTS += --disable-xcb
+endif
+
 ifeq ($(BR2_PACKAGE_XLIB_LIBX11),y)
 VLC_CONF_OPTS += --with-x
 VLC_DEPENDENCIES += xlib_libX11
 else
 VLC_CONF_OPTS += --without-x
+endif
+
+ifeq ($(BR2_PACKAGE_ZLIB),y)
+VLC_DEPENDENCIES += zlib
 endif
 
 $(eval $(autotools-package))

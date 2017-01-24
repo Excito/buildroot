@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-TIFF_VERSION = 4.0.6
+TIFF_VERSION = 4.0.7
 TIFF_SITE = http://download.osgeo.org/libtiff
 TIFF_LICENSE = tiff license
 TIFF_LICENSE_FILES = COPYRIGHT
@@ -14,6 +14,14 @@ TIFF_CONF_OPTS = \
 	--without-x \
 
 TIFF_DEPENDENCIES = host-pkgconf
+
+HOST_TIFF_CONF_OPTS = \
+	--disable-cxx \
+	--without-x \
+	--disable-zlib \
+	--disable-lzma \
+	--disable-jpeg
+HOST_TIFF_DEPENDENCIES = host-pkgconf
 
 ifneq ($(BR2_PACKAGE_TIFF_CCITT),y)
 TIFF_CONF_OPTS += --disable-ccitt
@@ -49,6 +57,12 @@ else
 TIFF_DEPENDENCIES += zlib
 endif
 
+ifneq ($(BR2_PACKAGE_TIFF_XZ),y)
+TIFF_CONF_OPTS += --disable-lzma
+else
+TIFF_DEPENDENCIES += xz
+endif
+
 ifneq ($(BR2_PACKAGE_TIFF_PIXARLOG),y)
 TIFF_CONF_OPTS += --disable-pixarlog
 endif
@@ -75,3 +89,4 @@ endif
 TIFF_MAKE = $(MAKE) SUBDIRS="$(TIFF_SUBDIRS)"
 
 $(eval $(autotools-package))
+$(eval $(host-autotools-package))

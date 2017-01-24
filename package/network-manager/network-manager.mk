@@ -4,13 +4,13 @@
 #
 ################################################################################
 
-NETWORK_MANAGER_VERSION_MAJOR = 1.0
-NETWORK_MANAGER_VERSION = $(NETWORK_MANAGER_VERSION_MAJOR).6
+NETWORK_MANAGER_VERSION_MAJOR = 1.4
+NETWORK_MANAGER_VERSION = $(NETWORK_MANAGER_VERSION_MAJOR).2
 NETWORK_MANAGER_SOURCE = NetworkManager-$(NETWORK_MANAGER_VERSION).tar.xz
 NETWORK_MANAGER_SITE = http://ftp.gnome.org/pub/GNOME/sources/NetworkManager/$(NETWORK_MANAGER_VERSION_MAJOR)
 NETWORK_MANAGER_INSTALL_STAGING = YES
 NETWORK_MANAGER_DEPENDENCIES = host-pkgconf udev dbus-glib libnl gnutls \
-	libgcrypt wireless_tools util-linux host-intltool readline libndp
+	libgcrypt wireless_tools util-linux host-intltool readline libndp libgudev
 NETWORK_MANAGER_LICENSE = GPLv2+ (app), LGPLv2+ (libnm-util)
 NETWORK_MANAGER_LICENSE_FILES = COPYING libnm-util/COPYING
 
@@ -24,7 +24,6 @@ NETWORK_MANAGER_CONF_ENV = \
 
 
 NETWORK_MANAGER_CONF_OPTS = \
-	--mandir=$(STAGING_DIR)/usr/man/ \
 	--disable-tests \
 	--disable-qt \
 	--disable-more-warnings \
@@ -61,10 +60,6 @@ endif
 
 ifeq ($(BR2_PACKAGE_DHCPCD),y)
 NETWORK_MANAGER_CONF_OPTS += --with-dhcpcd=/sbin/dhcpcd
-endif
-
-ifeq ($(BR2_INIT_SYSTEMD),y)
-NETWORK_MANAGER_DEPENDENCIES += libgudev
 endif
 
 # uClibc by default doesn't have backtrace support, so don't use it

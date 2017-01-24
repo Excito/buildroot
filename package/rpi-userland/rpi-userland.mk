@@ -4,13 +4,14 @@
 #
 ################################################################################
 
-RPI_USERLAND_VERSION = 8306b7c757f4b8e8d9148789eeb64c666d9244a5
+RPI_USERLAND_VERSION = a1b89e91f393c7134b4cdc36431f863bb3333163
 RPI_USERLAND_SITE = $(call github,raspberrypi,userland,$(RPI_USERLAND_VERSION))
 RPI_USERLAND_LICENSE = BSD-3c
 RPI_USERLAND_LICENSE_FILES = LICENCE
 RPI_USERLAND_INSTALL_STAGING = YES
 RPI_USERLAND_CONF_OPTS = -DVMCS_INSTALL_PREFIX=/usr \
-	-DCMAKE_C_FLAGS="-DVCFILED_LOCKFILE=\\\"/var/run/vcfiled.pid\\\""
+	-DCMAKE_C_FLAGS="$(TARGET_CFLAGS) \
+		-DVCFILED_LOCKFILE=\\\"/var/run/vcfiled.pid\\\""
 
 RPI_USERLAND_PROVIDES = libegl libgles libopenmax libopenvg
 
@@ -35,14 +36,14 @@ RPI_USERLAND_CONF_OPTS += -DALL_APPS=ON
 define RPI_USERLAND_EXTRA_LIBS_TARGET
 	$(INSTALL) -m 0644 -D \
 		$(@D)/build/lib/libilclient.so \
-		$(TARGET_DIR)/usr/lib/libilcient.so
+		$(TARGET_DIR)/usr/lib/libilclient.so
 endef
 RPI_USERLAND_POST_INSTALL_TARGET_HOOKS += RPI_USERLAND_EXTRA_LIBS_TARGET
 
 define RPI_USERLAND_EXTRA_LIBS_STAGING
 	$(INSTALL) -m 0644 -D \
 		$(@D)/build/lib/libilclient.so \
-		$(STAGING_DIR)/usr/lib/libilcient.so
+		$(STAGING_DIR)/usr/lib/libilclient.so
 endef
 RPI_USERLAND_POST_INSTALL_STAGING_HOOKS += RPI_USERLAND_EXTRA_LIBS_STAGING
 
