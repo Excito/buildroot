@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-LIBCEC_VERSION = libcec-3.0.1
+LIBCEC_VERSION = 2c675dac48387c48c7f43c5d2547ef0c4ef5c7dd
 LIBCEC_SITE = $(call github,Pulse-Eight,libcec,$(LIBCEC_VERSION))
 LIBCEC_LICENSE = GPLv2+
 LIBCEC_LICENSE_FILES = COPYING
@@ -29,8 +29,9 @@ endif
 ifeq ($(BR2_PACKAGE_RPI_USERLAND),y)
 LIBCEC_DEPENDENCIES += rpi-userland
 LIBCEC_CONF_OPTS += \
-	-DCMAKE_C_FLAGS="-lvcos -lvchiq_arm" \
-	-DCMAKE_CXX_FLAGS="-I$(STAGING_DIR)/usr/include/interface/vmcs_host/linux \
+	-DCMAKE_C_FLAGS="$(TARGET_CFLAGS) -lvcos -lvchiq_arm" \
+	-DCMAKE_CXX_FLAGS="$(TARGET_CXXFLAGS) \
+		-I$(STAGING_DIR)/usr/include/interface/vmcs_host/linux \
 		-I$(STAGING_DIR)/usr/include/interface/vcos/pthreads"
 endif
 

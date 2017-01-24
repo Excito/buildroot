@@ -22,12 +22,6 @@ TI_GFX_INSTALL_STAGING = YES
 
 TI_GFX_DEPENDENCIES = linux
 
-# We're building a kernel module without using the kernel-module infra,
-# so we need to tell we want module support in the kernel
-ifeq ($(BR2_PACKAGE_TI_GFX),y)
-LINUX_NEEDS_MODULES = y
-endif
-
 TI_GFX_PROVIDES = libegl libgles powervr
 
 ifeq ($(BR2_PACKAGE_TI_GFX_ES3),y)
@@ -107,7 +101,7 @@ define TI_GFX_EXTRACT_CMDS
 endef
 
 define TI_GFX_BUILD_KM_CMDS
-	$(MAKE) $(TI_GFX_KM_MAKE_OPTS) -C $(@D)/GFX_Linux_KM all
+	$(TARGET_MAKE_ENV) $(MAKE) $(TI_GFX_KM_MAKE_OPTS) -C $(@D)/GFX_Linux_KM all
 endef
 
 ifeq ($(BR2_PACKAGE_TI_GFX_DEMOS),y)
@@ -162,7 +156,7 @@ define TI_GFX_INSTALL_STAGING_CMDS
 endef
 
 define TI_GFX_INSTALL_KM_CMDS
-	$(MAKE) $(TI_GFX_KM_MAKE_OPTS) -C $(@D)/GFX_Linux_KM install
+	$(TARGET_MAKE_ENV) $(MAKE) $(TI_GFX_KM_MAKE_OPTS) -C $(@D)/GFX_Linux_KM install
 endef
 
 define TI_GFX_INSTALL_BINS_CMDS

@@ -67,11 +67,9 @@ endif
 
 DIRECTFB_GFX = \
 	$(if $(BR2_PACKAGE_DIRECTFB_ATI128),ati128) \
-	$(if $(BR2_PACKAGE_DIRECTFB_CLE266),cle266) \
 	$(if $(BR2_PACKAGE_DIRECTFB_CYBER5K),cyber5k) \
 	$(if $(BR2_PACKAGE_DIRECTFB_MATROX),matrox) \
 	$(if $(BR2_PACKAGE_DIRECTFB_PXA3XX),pxa3xx) \
-	$(if $(BR2_PACKAGE_DIRECTFB_UNICHROME),unichrome) \
 	$(if $(BR2_PACKAGE_DIRECTFB_I830),i830)	\
 	$(if $(BR2_PACKAGE_DIRECTFB_EP9X),ep9x)
 
@@ -163,7 +161,7 @@ HOST_DIRECTFB_CONF_OPTS = \
 	--with-inputdrivers=none
 
 HOST_DIRECTFB_BUILD_CMDS = \
-	$(MAKE) -C $(@D)/tools directfb-csource
+	$(HOST_MAKE_ENV) $(MAKE) -C $(@D)/tools directfb-csource
 
 HOST_DIRECTFB_INSTALL_CMDS = \
 	$(INSTALL) -m 0755 $(@D)/tools/directfb-csource $(HOST_DIR)/usr/bin

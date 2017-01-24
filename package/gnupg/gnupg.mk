@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-GNUPG_VERSION = 1.4.19
+GNUPG_VERSION = 1.4.21
 GNUPG_SOURCE = gnupg-$(GNUPG_VERSION).tar.bz2
 GNUPG_SITE = ftp://ftp.gnupg.org/gcrypt/gnupg
 GNUPG_LICENSE = GPLv3+
@@ -13,6 +13,11 @@ GNUPG_DEPENDENCIES = zlib ncurses $(if $(BR2_PACKAGE_LIBICONV),libiconv)
 HOST_GNUPG_DEPENDENCIES = host-zlib
 GNUPG_CONF_ENV = ac_cv_sys_symbol_underscore=no
 GNUPG_CONF_OPTS = --disable-rpath --disable-regex
+
+# gnupg doesn't support assembly for coldfire
+ifeq ($(BR2_m68k_cf),y)
+GNUPG_CONF_OPTS += --disable-asm
+endif
 
 ifeq ($(BR2_PACKAGE_BZIP2),y)
 GNUPG_CONF_OPTS += --enable-bzip2
