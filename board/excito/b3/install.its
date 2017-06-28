@@ -7,7 +7,7 @@
 
 	images {
 		kernel@1 {
-			description = "kernel-3.18.21-b3-install";
+			description = "kernel-4.9.34-b3-install";
 			data = /incbin/("./zImage.b3");
 			type = "kernel";
 			arch = "arm";

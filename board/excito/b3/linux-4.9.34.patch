@@ -1,7 +1,7 @@
-diff -urN linux-3.18.14/arch/arm/boot/dts/kirkwood-b3.dts linux-3.18.14.b3/arch/arm/boot/dts/kirkwood-b3.dts
---- linux-3.18.14/arch/arm/boot/dts/kirkwood-b3.dts	2015-05-20 11:04:50.000000000 -0400
-+++ linux-3.18.14.b3/arch/arm/boot/dts/kirkwood-b3.dts	2015-05-21 12:45:18.223570013 -0400
-@@ -135,17 +135,19 @@
+diff -urN linux-4.9.34/arch/arm/boot/dts/kirkwood-b3.dts linux-4.9.34.b3/arch/arm/boot/dts/kirkwood-b3.dts
+--- linux-4.9.34/arch/arm/boot/dts/kirkwood-b3.dts	2017-06-24 01:14:26.000000000 -0400
++++ linux-4.9.34.b3/arch/arm/boot/dts/kirkwood-b3.dts	2017-06-27 21:20:47.068009601 -0400
+@@ -124,17 +124,19 @@
  		programming_led {
  			label = "bubba3:green:programming";
  			gpios = <&gpio1 6 GPIO_ACTIVE_HIGH>;
@@ -22,13 +22,14 @@ diff -urN linux-3.18.14/arch/arm/boot/dts/kirkwood-b3.dts linux-3.18.14.b3/arch/
  		};
  	};
  
-diff -urN linux-3.18.14/arch/arm/kernel/process.c linux-3.18.14.b3/arch/arm/kernel/process.c
---- linux-3.18.14/arch/arm/kernel/process.c	2015-05-20 11:04:50.000000000 -0400
-+++ linux-3.18.14.b3/arch/arm/kernel/process.c	2015-05-21 12:45:18.223570013 -0400
-@@ -196,6 +196,13 @@
+diff -urN linux-4.9.34/arch/arm/kernel/reboot.c linux-4.9.34.b3/arch/arm/kernel/reboot.c
+--- linux-4.9.34/arch/arm/kernel/reboot.c	2017-06-24 01:14:26.000000000 -0400
++++ linux-4.9.34.b3/arch/arm/kernel/reboot.c	2017-06-27 21:25:04.771350453 -0400
+@@ -104,6 +104,14 @@
+ {
  	local_irq_disable();
  	smp_send_stop();
- 
++
 +#ifdef CONFIG_KIRKWOOD_ALWAYS_RESTART
 +	if (arm_pm_restart)
 +		arm_pm_restart(reboot_mode, NULL);
@@ -36,10 +37,10 @@ diff -urN linux-3.18.14/arch/arm/kernel/process.c linux-3.18.14.b3/arch/arm/kern
 +		do_kernel_restart(NULL);
 +#endif
 +
- 	local_irq_disable();
  	while (1);
  }
-@@ -211,6 +218,13 @@
+ 
+@@ -118,6 +126,13 @@
  	local_irq_disable();
  	smp_send_stop();
  
@@ -53,12 +54,12 @@ diff -urN linux-3.18.14/arch/arm/kernel/process.c linux-3.18.14.b3/arch/arm/kern
  	if (pm_power_off)
  		pm_power_off();
  }
-diff -urN linux-3.18.14/arch/arm/mach-mvebu/Kconfig linux-3.18.14.b3/arch/arm/mach-mvebu/Kconfig
---- linux-3.18.14/arch/arm/mach-mvebu/Kconfig	2015-05-20 11:04:50.000000000 -0400
-+++ linux-3.18.14.b3/arch/arm/mach-mvebu/Kconfig	2015-05-21 12:45:18.223570013 -0400
-@@ -109,4 +109,11 @@
- 	  Say 'Y' here if you want your kernel to support the
- 	  LaCie 2Big and 5Big Network v2
+diff -urN linux-4.9.34/arch/arm/mach-mvebu/Kconfig linux-4.9.34.b3/arch/arm/mach-mvebu/Kconfig
+--- linux-4.9.34/arch/arm/mach-mvebu/Kconfig	2017-06-24 01:14:26.000000000 -0400
++++ linux-4.9.34.b3/arch/arm/mach-mvebu/Kconfig	2017-06-27 21:26:28.251352889 -0400
+@@ -130,4 +130,11 @@
+ 	  Say 'Y' here if you want your kernel to support boards based
+ 	  on the Marvell Kirkwood device tree.
  
 +config KIRKWOOD_ALWAYS_RESTART
 +	bool "Restart board when powering off kernel"
@@ -68,10 +69,10 @@ diff -urN linux-3.18.14/arch/arm/mach-mvebu/Kconfig linux-3.18.14.b3/arch/arm/ma
 +	  when asked to power off.
 +
  endif
-diff -urN linux-3.18.14/drivers/net/ethernet/marvell/mv643xx_eth.c linux-3.18.14.b3/drivers/net/ethernet/marvell/mv643xx_eth.c
---- linux-3.18.14/drivers/net/ethernet/marvell/mv643xx_eth.c	2015-05-20 11:04:50.000000000 -0400
-+++ linux-3.18.14.b3/drivers/net/ethernet/marvell/mv643xx_eth.c	2015-05-21 12:45:18.223570013 -0400
-@@ -3112,11 +3112,11 @@
+diff -urN linux-4.9.34/drivers/net/ethernet/marvell/mv643xx_eth.c linux-4.9.34.b3/drivers/net/ethernet/marvell/mv643xx_eth.c
+--- linux-4.9.34/drivers/net/ethernet/marvell/mv643xx_eth.c	2017-06-24 01:14:26.000000000 -0400
++++ linux-4.9.34.b3/drivers/net/ethernet/marvell/mv643xx_eth.c	2017-06-27 21:31:00.511360833 -0400
+@@ -3197,11 +3197,11 @@
  	dev->watchdog_timeo = 2 * HZ;
  	dev->base_addr = 0;
  
@@ -85,13 +86,13 @@ diff -urN linux-3.18.14/drivers/net/ethernet/marvell/mv643xx_eth.c linux-3.18.14
  
  	dev->priv_flags |= IFF_UNICAST_FLT;
  	dev->gso_max_segs = MV643XX_MAX_TSO_SEGS;
-diff -urN linux-3.18.14/drivers/net/phy/Kconfig linux-3.18.14.b3/drivers/net/phy/Kconfig
---- linux-3.18.14/drivers/net/phy/Kconfig	2015-05-20 11:04:50.000000000 -0400
-+++ linux-3.18.14.b3/drivers/net/phy/Kconfig	2015-05-21 12:45:18.223570013 -0400
-@@ -35,6 +35,13 @@
+diff -urN linux-4.9.34/drivers/net/phy/Kconfig linux-4.9.34.b3/drivers/net/phy/Kconfig
+--- linux-4.9.34/drivers/net/phy/Kconfig	2017-06-24 01:14:26.000000000 -0400
++++ linux-4.9.34.b3/drivers/net/phy/Kconfig	2017-06-27 21:33:01.778031040 -0400
+@@ -264,6 +264,13 @@
  	---help---
  	  Currently has a driver for the 88E1011S
- 	
+ 
 +config MARVELL_PHY_REVERSE
 +	depends on MARVELL_PHY
 +	bool "Reverse LED activity"
@@ -99,13 +100,13 @@ diff -urN linux-3.18.14/drivers/net/phy/Kconfig linux-3.18.14.b3/drivers/net/phy
 +	  Reverse link and activity LEDS on
 +	  88E1016R and 88E1018R
 +
- config DAVICOM_PHY
- 	tristate "Drivers for Davicom PHYs"
+ config MICREL_PHY
+ 	tristate "Micrel PHYs"
  	---help---
-diff -urN linux-3.18.14/drivers/net/phy/marvell.c linux-3.18.14.b3/drivers/net/phy/marvell.c
---- linux-3.18.14/drivers/net/phy/marvell.c	2015-05-20 11:04:50.000000000 -0400
-+++ linux-3.18.14.b3/drivers/net/phy/marvell.c	2015-05-21 12:45:18.223570013 -0400
-@@ -577,12 +577,24 @@
+diff -urN linux-4.9.34/drivers/net/phy/marvell.c linux-4.9.34.b3/drivers/net/phy/marvell.c
+--- linux-4.9.34/drivers/net/phy/marvell.c	2017-06-24 01:14:26.000000000 -0400
++++ linux-4.9.34.b3/drivers/net/phy/marvell.c	2017-06-27 21:39:52.041376343 -0400
+@@ -895,6 +895,17 @@
  		return err;
  
  	/* Adjust LED Control */
@@ -123,15 +124,16 @@ diff -urN linux-3.18.14/drivers/net/phy/marvell.c linux-3.18.14.b3/drivers/net/p
  	if (phydev->dev_flags & MARVELL_PHY_M1118_DNS323_LEDS)
  		err = phy_write(phydev, 0x10, 0x1100);
  	else
- 		err = phy_write(phydev, 0x10, 0x021e);
+@@ -905,6 +916,7 @@
+ 	err = marvell_of_reg_init(phydev);
  	if (err < 0)
  		return err;
 +#endif
  
- 	err = marvell_of_reg_init(phydev);
- 	if (err < 0)
-@@ -948,6 +960,19 @@
- 		.driver = { .owner = THIS_MODULE },
+ 	/* Reset address */
+ 	err = phy_write(phydev, MII_MARVELL_PHY_PAGE, 0x0);
+@@ -1546,6 +1558,23 @@
+ 		.get_stats = marvell_get_stats,
  	},
  	{
 +		.phy_id = MARVELL_PHY_ID_88E1116,
@@ -144,13 +146,17 @@ diff -urN linux-3.18.14/drivers/net/phy/marvell.c linux-3.18.14.b3/drivers/net/p
 +		.read_status = &genphy_read_status,
 +		.ack_interrupt = &marvell_ack_interrupt,
 +		.config_intr = &marvell_config_intr,
-+		.driver = {.owner = THIS_MODULE,},
++		.resume = &genphy_resume,
++		.suspend = &genphy_suspend,
++		.get_sset_count = marvell_get_sset_count,
++		.get_strings = marvell_get_strings,
++		.get_stats = marvell_get_stats,
 +	},
 +	{
  		.phy_id = MARVELL_PHY_ID_88E1118,
  		.phy_id_mask = MARVELL_PHY_ID_MASK,
  		.name = "Marvell 88E1118",
-@@ -1090,6 +1115,7 @@
+@@ -1741,6 +1770,7 @@
  	{ MARVELL_PHY_ID_88E1101, MARVELL_PHY_ID_MASK },
  	{ MARVELL_PHY_ID_88E1112, MARVELL_PHY_ID_MASK },
  	{ MARVELL_PHY_ID_88E1111, MARVELL_PHY_ID_MASK },
@@ -158,9 +164,9 @@ diff -urN linux-3.18.14/drivers/net/phy/marvell.c linux-3.18.14.b3/drivers/net/p
  	{ MARVELL_PHY_ID_88E1118, MARVELL_PHY_ID_MASK },
  	{ MARVELL_PHY_ID_88E1121R, MARVELL_PHY_ID_MASK },
  	{ MARVELL_PHY_ID_88E1145, MARVELL_PHY_ID_MASK },
-diff -urN linux-3.18.14/include/linux/marvell_phy.h linux-3.18.14.b3/include/linux/marvell_phy.h
---- linux-3.18.14/include/linux/marvell_phy.h	2015-05-20 11:04:50.000000000 -0400
-+++ linux-3.18.14.b3/include/linux/marvell_phy.h	2015-05-21 12:45:18.223570013 -0400
+diff -urN linux-4.9.34/include/linux/marvell_phy.h linux-4.9.34.b3/include/linux/marvell_phy.h
+--- linux-4.9.34/include/linux/marvell_phy.h	2017-06-24 01:14:26.000000000 -0400
++++ linux-4.9.34.b3/include/linux/marvell_phy.h	2017-06-27 21:40:10.961376896 -0400
 @@ -8,6 +8,7 @@
  #define MARVELL_PHY_ID_88E1101		0x01410c60
  #define MARVELL_PHY_ID_88E1112		0x01410c90
