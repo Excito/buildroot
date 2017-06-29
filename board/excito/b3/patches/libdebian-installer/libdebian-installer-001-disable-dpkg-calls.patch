@@ -1,13 +1,13 @@
-diff -urN libdebian-installer-0.99.orig/configure.ac libdebian-installer-0.99/configure.ac
---- libdebian-installer-0.99.orig/configure.ac	2015-01-28 12:54:55.000000000 -0500
-+++ libdebian-installer-0.99/configure.ac	2015-04-25 21:11:25.089009773 -0400
+diff -urN libdebian-installer-0.110.orig/configure.ac libdebian-installer-0.110/configure.ac
+--- libdebian-installer-0.110.orig/configure.ac	2017-06-29 09:13:39.441442327 -0400
++++ libdebian-installer-0.110/configure.ac	2017-06-29 09:13:49.674775959 -0400
 @@ -1,4 +1,4 @@
 -AC_INIT([libdebian-installer],m4_esyscmd(dpkg-parsechangelog | perl -ne 'print $1 if m/^Version: (.*)$/;'))
 +AC_INIT([libdebian-installer],0.99)
  AM_INIT_AUTOMAKE([])
  AM_MAINTAINER_MODE
  
-@@ -48,25 +48,11 @@
+@@ -55,25 +55,11 @@
  fi
  
  AC_MSG_CHECKING([Debian CPU name])
