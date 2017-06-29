@@ -1,6 +1,7 @@
---- a/Makefile
-+++ b/Makefile
-@@ -20,14 +20,13 @@
+diff -urN debootstrap-1.0.89.orig/Makefile debootstrap-1.0.89/Makefile
+--- debootstrap-1.0.89.orig/Makefile	2017-06-29 10:44:31.071601402 -0400
++++ debootstrap-1.0.89/Makefile	2017-06-29 10:44:49.841601950 -0400
+@@ -11,8 +11,7 @@
  	mkdir -p $(DESTDIR)/usr/sbin
  
  	cp -a scripts/* $(DSDIR)/scripts/
@@ -10,10 +11,3 @@
  	sed 's/@VERSION@/$(VERSION)/g' debootstrap >$(DESTDIR)/usr/sbin/debootstrap
 -	chown root:root $(DESTDIR)/usr/sbin/debootstrap
  	chmod 0755 $(DESTDIR)/usr/sbin/debootstrap
- 
- ifeq ($(shell uname),Linux)
--	install -o root -g root -m 0644 devices.tar.gz $(DSDIR)/
-+	install -m 0644 devices.tar.gz $(DSDIR)/
- endif
- 
- devices.tar.gz:
