@@ -11,7 +11,9 @@ LIBASSUAN_LICENSE = LGPL-2.1+ (library), GPL-3.0 (tests, doc)
 LIBASSUAN_LICENSE_FILES = COPYING.LIB COPYING
 LIBASSUAN_INSTALL_STAGING = YES
 LIBASSUAN_DEPENDENCIES = libgpg-error
+HOST_LIBASSUAN_DEPENDENCIES = host-libgpg-error
 LIBASSUAN_CONF_OPTS = \
 	--with-gpg-error-prefix=$(STAGING_DIR)/usr
 
 $(eval $(autotools-package))
+$(eval $(host-autotools-package))

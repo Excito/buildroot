@@ -25,3 +25,4 @@ LIBGPG_ERROR_PRE_CONFIGURE_HOOKS += LIBGPG_ERROR_FIX_CROSS_COMPILATION
 LIBGPG_ERROR_CONF_OPTS = --disable-tests
 
 $(eval $(autotools-package))
+$(eval $(host-autotools-package))

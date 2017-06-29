@@ -11,6 +11,7 @@ LIBGCRYPT_LICENSE_FILES = COPYING.LIB
 LIBGCRYPT_SITE = ftp://ftp.gnupg.org/gcrypt/libgcrypt
 LIBGCRYPT_INSTALL_STAGING = YES
 LIBGCRYPT_DEPENDENCIES = libgpg-error
+HOST_LIBGCRYPT_DEPENDENCIES = host-libgpg-error
 LIBGCRYPT_CONFIG_SCRIPTS = libgcrypt-config
 
 LIBGCRYPT_CONF_ENV = \
@@ -36,3 +37,4 @@ endef
 LIBGCRYPT_POST_PATCH_HOOKS += LIBGCRYPT_DISABLE_TESTS
 
 $(eval $(autotools-package))
+$(eval $(host-autotools-package))

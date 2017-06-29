@@ -11,6 +11,8 @@ GNUPG2_LICENSE = GPL-3.0+
 GNUPG2_LICENSE_FILES = COPYING
 GNUPG2_DEPENDENCIES = zlib libgpg-error libgcrypt libassuan libksba libnpth \
 	$(if $(BR2_PACKAGE_LIBICONV),libiconv) host-pkgconf
+HOST_GNUPG2_DEPENDENCIES = host-zlib host-libgpg-error host-libgcrypt host-libassuan \
+	host-libksba host-libnpth
 
 GNUPG2_CONF_OPTS = \
 	--disable-rpath --disable-regex --disable-doc \
@@ -65,3 +67,4 @@ GNUPG2_CONF_OPTS += --disable-sqlite
 endif
 
 $(eval $(autotools-package))
+$(eval $(host-autotools-package))

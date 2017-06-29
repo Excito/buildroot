@@ -12,3 +12,4 @@ LIBNPTH_LICENSE_FILES = COPYING COPYING.LESSER
 LIBNPTH_INSTALL_STAGING = YES
 
 $(eval $(autotools-package))
+$(eval $(host-autotools-package))
