@@ -1,0 +1,12 @@
+diff -urN cdebootstrap-0.7.7.orig/src/target.c cdebootstrap-0.7.7/src/target.c
+--- cdebootstrap-0.7.7.orig/src/target.c	2017-06-29 11:32:57.835019556 -0400
++++ cdebootstrap-0.7.7/src/target.c	2017-06-29 11:33:13.568353347 -0400
+@@ -20,6 +20,8 @@
+ 
+ #include <config.h>
+ 
++#define _GNU_SOURCE
++
+ #include <errno.h>
+ #include <fcntl.h>
+ #include <sys/stat.h>
