@@ -10,10 +10,10 @@ GNUPG_SITE = ftp://ftp.gnupg.org/gcrypt/gnupg
 GNUPG_LICENSE = GPL-3.0+
 GNUPG_LICENSE_FILES = COPYING
 GNUPG_DEPENDENCIES = zlib ncurses $(if $(BR2_PACKAGE_LIBICONV),libiconv)
-HOST_GNUPG_DEPENDENCIES = host-zlib
 GNUPG_CONF_ENV = ac_cv_sys_symbol_underscore=no
 GNUPG_CONF_OPTS = \
 	--disable-rpath \
+	--enable-minimal \
 	--disable-regex \
 	--enable-sha256 \
 	--enable-sha512
@@ -41,6 +41,18 @@ else
 GNUPG_CONF_OPTS += --without-readline
 endif
 
+ifeq ($(BR2_PACKAGE_GNUPG_AES),y)
+GNUPG_CONF_OPTS += --enable-aes
+else
+GNUPG_CONF_OPTS += --disable-aes
+endif
+
+ifeq ($(BR2_PACKAGE_GNUPG_RSA),y)
+GNUPG_CONF_OPTS += --enable-rsa
+else
+GNUPG_CONF_OPTS += --disable-rsa
+endif
+
 ifneq ($(BR2_PACKAGE_GNUPG_GPGV),y)
 define GNUPG_REMOVE_GPGV
 	rm -f $(TARGET_DIR)/usr/bin/gpgv
@@ -56,4 +68,3 @@ GNUPG_POST_INSTALL_TARGET_HOOKS += GNUPG_REMOVE_GPGSPLIT
 endif
 
 $(eval $(autotools-package))
-$(eval $(host-autotools-package))
