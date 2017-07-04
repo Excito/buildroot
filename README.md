@@ -1,15 +1,15 @@
 ## Excito Buildroot
 
-This is the 2015.08 buildroot source tree with the B3 and B2 board modifications to generate an updated rescue/install system. It can also generate an x86 'livecd' for testing purpose.
+This is the 2017.05 buildroot source tree with the B3 board modifications to generate an updated rescue/install system.
 
 ## Content
 
-For now the generated image contains only network tools, ssh, ftp and telnet server to connect to the system. It will run a dhcp client on any connected wired network.
-An updated installer script will kick in shortly.
+The generated image contains network tools, ssh, ftp and telnet server to connect to the system. It will run a dhcp client on any connected wired network.
+It also includes the excito installer along with useful diagnostics tools.
 
 ## Building
 
-clone this repository and run these commands for the B3:
+clone this repository and run these commands:
 
 ```
 make distclean
@@ -20,29 +20,10 @@ make excito_b3_step2_defconfig
 make
 ```
 
-for the Bubba|2:
-```
-make distclean
-make excito_bubbatwo_step1_defconfig
-make
-make clean
-make excito_bubbatwo_step2_defconfig
-make
-```
-
-for x86:
-```
-make distclean
-make excito_x86_defconfig
-make
-```
-
-The generated file will be available in output/excito :
- - install.itb and rootfs.cpio.gz for the b3
- - 8313E21.itb, install.itb and rootfs.cpio.gz for Bubba|2
-
-For x86, the rootfs.iso9660 ISO file will be available in output/images
+The generated files will be available in output/excito/install :
+ - `install.itb` and `rootfs.cpio.gz`: rescue system files
+ - `install.ini`: default configuration file for excito-installer
 
 ## Using
 
-Place the install.itb and rootfs.cpio.gz (add 8313E21.itb for the Bubba|2) files in the install directory of a fat-formatted usb disk and run the b3 (resp. Bubba|2) with power button pushed.
+Place the install directory into a fat-formatted usb disk and run the b3 with power button pushed. With default configuration the system will start, configure the network and open ssh, ftp and telnet servers. Login is root with password 'excito' without the quotes.
