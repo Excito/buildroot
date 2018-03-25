@@ -13,6 +13,7 @@ raid1
 
 # MTD
 spi_orion
+m25p80
 
 # RTC
 rtc-mv
