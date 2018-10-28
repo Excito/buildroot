@@ -1,6 +1,6 @@
 ## Excito Buildroot
 
-This is the 2017.05 buildroot source tree with the B3 board modifications to generate an updated rescue/install system.
+This is the 2018.08.02 buildroot source tree with the B3 board modifications to generate an updated rescue/install system.
 
 ## Content
 
