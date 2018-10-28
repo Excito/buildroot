@@ -18,6 +18,9 @@ HOST_LIBCAP_DEPENDENCIES = host-gperf
 ifeq ($(BR2_STATIC_LIBS),y)
 LIBCAP_MAKE_TARGET = libcap.a libcap.pc
 LIBCAP_MAKE_INSTALL_TARGET = install-static
+else ifeq ($(BR2_SHARED_LIBS),y)
+LIBCAP_MAKE_TARGET = all
+LIBCAP_MAKE_INSTALL_TARGET = install-shared
 else
 LIBCAP_MAKE_TARGET = all
 LIBCAP_MAKE_INSTALL_TARGET = install
@@ -63,8 +66,8 @@ define HOST_LIBCAP_BUILD_CMDS
 endef
 
 define HOST_LIBCAP_INSTALL_CMDS
-	$(HOST_MAKE_ENV) $(MAKE) -C $(@D) DESTDIR=$(HOST_DIR) \
-		RAISE_SETFCAP=no prefix=/usr lib=lib install
+	$(HOST_MAKE_ENV) $(MAKE) -C $(@D) prefix=$(HOST_DIR) \
+		RAISE_SETFCAP=no lib=lib install
 endef
 
 $(eval $(generic-package))

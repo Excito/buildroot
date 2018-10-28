@@ -39,14 +39,9 @@ comment "OBEX support needs a toolchain w/ C++"
 
 config BR2_PACKAGE_BLUEZ5_UTILS_CLIENT
 	bool "build CLI client"
-	# wordexp support not in our uClibc configuration
-	depends on !BR2_TOOLCHAIN_USES_UCLIBC
 	select BR2_PACKAGE_READLINE
 	help
 	  Enable the Bluez 5.x command line client.
-
-comment "bluez5-utils client needs a glibc or musl toolchain"
-	depends on BR2_TOOLCHAIN_USES_UCLIBC
 
 config BR2_PACKAGE_BLUEZ5_UTILS_DEPRECATED
 	bool "install deprecated tool"
@@ -61,33 +56,34 @@ config BR2_PACKAGE_BLUEZ5_UTILS_EXPERIMENTAL
 	help
 	  Build BlueZ 5.x experimental Nokia OBEX PC Suite plugin
 
-config BR2_PACKAGE_BLUEZ5_PLUGINS_HEALTH
+config BR2_PACKAGE_BLUEZ5_UTILS_PLUGINS_HEALTH
 	bool "build health plugin"
 	help
 	  Build BlueZ 5.x health plugin
 
-config BR2_PACKAGE_BLUEZ5_PLUGINS_MIDI
+config BR2_PACKAGE_BLUEZ5_UTILS_PLUGINS_MIDI
 	bool "build midi profile"
 	select BR2_PACKAGE_ALSA_LIB
 	select BR2_PACKAGE_ALSA_LIB_SEQ
 	help
 	  Build BlueZ 5.x midi plugin
 
-config BR2_PACKAGE_BLUEZ5_PLUGINS_NFC
+config BR2_PACKAGE_BLUEZ5_UTILS_PLUGINS_NFC
 	bool "build nfc plugin"
 	help
 	  Build BlueZ 5.x nfc plugin
 
-config BR2_PACKAGE_BLUEZ5_PLUGINS_SAP
+config BR2_PACKAGE_BLUEZ5_UTILS_PLUGINS_SAP
 	bool "build sap plugin"
 	help
 	  Build BlueZ 5.x sap plugin
 
-config BR2_PACKAGE_BLUEZ5_PLUGINS_SIXAXIS
+config BR2_PACKAGE_BLUEZ5_UTILS_PLUGINS_SIXAXIS
 	bool "build sixaxis plugin"
 	depends on BR2_PACKAGE_HAS_UDEV
 	help
-	  Build BlueZ 5.x sixaxis plugin (support Sony Dualshock controller)
+	  Build BlueZ 5.x sixaxis plugin (support Sony Dualshock
+	  controller)
 
 comment "sixaxis plugin needs udev /dev management"
 	depends on !BR2_PACKAGE_HAS_UDEV
