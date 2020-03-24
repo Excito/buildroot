@@ -1,0 +1,9 @@
+diff -urN cdebootstrap/configure.ac cdebootstrap.new/configure.ac
+--- cdebootstrap/configure.ac	2017-02-26 13:45:41.000000000 -0500
++++ cdebootstrap.new/configure.ac	2020-03-24 12:38:53.856513026 -0400
+@@ -1,4 +1,4 @@
+-AC_INIT([cdebootstrap],m4_esyscmd(dpkg-parsechangelog | perl -ne 'print $1 if m/^Version: (.*)$/;'))
++AC_INIT([cdebootstrap],[0.7.7])
+ AM_INIT_AUTOMAKE([foreign no-define])
+ AC_CONFIG_HEADERS([config.h])
+ AM_MAINTAINER_MODE

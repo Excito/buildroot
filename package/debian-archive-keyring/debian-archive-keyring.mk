@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-DEBIAN_ARCHIVE_KEYRING_VERSION = 2017.5
+DEBIAN_ARCHIVE_KEYRING_VERSION = 2019.1
 DEBIAN_ARCHIVE_KEYRING_SOURCE = debian-archive-keyring_$(DEBIAN_ARCHIVE_KEYRING_VERSION).tar.xz
 DEBIAN_ARCHIVE_KEYRING_SITE = http://http.debian.net/debian/pool/main/d/debian-archive-keyring
 DEBIAN_ARCHIVE_KEYRING_LICENSE_FILES = debian/copyright
