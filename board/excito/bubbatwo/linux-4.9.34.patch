@@ -526,20 +526,6 @@ diff -urN linux-4.9.34.orig/arch/powerpc/platforms/83xx/Makefile linux-4.9.34/ar
  obj-$(CONFIG_MPC834x_MDS)	+= mpc834x_mds.o
  obj-$(CONFIG_MPC834x_ITX)	+= mpc834x_itx.o
  obj-$(CONFIG_MPC836x_MDS)	+= mpc836x_mds.o
-diff -urN linux-4.9.34.orig/arch/powerpc/platforms/83xx/mpc831x_rdb.c linux-4.9.34/arch/powerpc/platforms/83xx/mpc831x_rdb.c
---- linux-4.9.34.orig/arch/powerpc/platforms/83xx/mpc831x_rdb.c	2017-06-24 01:14:26.000000000 -0400
-+++ linux-4.9.34/arch/powerpc/platforms/83xx/mpc831x_rdb.c	2020-03-24 20:13:59.717309815 -0400
-@@ -55,6 +55,10 @@
- 	.init_IRQ		= mpc83xx_ipic_init_IRQ,
- 	.get_irq		= ipic_get_irq,
- 	.restart		= mpc83xx_restart,
-+#ifdef CONFIG_BUBBATWO
-+	.halt			= mpc83xx_restart,
-+	.poweroff		= mpc83xx_restart,
-+#endif
- 	.time_init		= mpc83xx_time_init,
- 	.calibrate_decr		= generic_calibrate_decr,
- 	.progress		= udbg_progress,
 diff -urN linux-4.9.34.orig/arch/powerpc/platforms/83xx/mpc83xx.h linux-4.9.34/arch/powerpc/platforms/83xx/mpc83xx.h
 --- linux-4.9.34.orig/arch/powerpc/platforms/83xx/mpc83xx.h	2017-06-24 01:14:26.000000000 -0400
 +++ linux-4.9.34/arch/powerpc/platforms/83xx/mpc83xx.h	2020-03-24 20:08:36.350633713 -0400
