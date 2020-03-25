@@ -21,7 +21,9 @@ mkimage -f 8313E21.its 8313E21.itb
 echo "Generating install.itb"
 mkimage -f install.its install.itb
 
-cp 8313E21.itb $BASE_DIR/excito
-cp install.itb $BASE_DIR/excito
+mkdir -p $BASE_DIR/excito/install
+
+mv 8313E21.itb $BASE_DIR/excito/install
+mv install.itb $BASE_DIR/excito/install
 
 rm {{8313E21,install}.{its,dts},reloc_shim_itb.S}

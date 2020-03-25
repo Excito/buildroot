@@ -1,25 +1,13 @@
-diff -urN libdebian-installer-0.110.orig/configure.ac libdebian-installer-0.110/configure.ac
---- libdebian-installer-0.110.orig/configure.ac	2017-06-29 09:13:39.441442327 -0400
-+++ libdebian-installer-0.110/configure.ac	2017-06-29 09:13:49.674775959 -0400
+diff -urN libdebian-installer-0.120.orig/configure.ac libdebian-installer-0.120/configure.ac
+--- libdebian-installer-0.120.orig/configure.ac	2020-03-25 10:57:11.209237877 -0400
++++ libdebian-installer-0.120/configure.ac	2020-03-25 10:58:32.809240259 -0400
 @@ -1,4 +1,4 @@
 -AC_INIT([libdebian-installer],m4_esyscmd(dpkg-parsechangelog | perl -ne 'print $1 if m/^Version: (.*)$/;'))
-+AC_INIT([libdebian-installer],0.99)
++AC_INIT([libdebian-installer],[0.120])
  AM_INIT_AUTOMAKE([])
  AM_MAINTAINER_MODE
  
-@@ -55,25 +55,11 @@
- fi
- 
- AC_MSG_CHECKING([Debian CPU name])
--DEB_HOST_ARCH_CPU="`dpkg-architecture -qDEB_HOST_ARCH_CPU 2>/dev/null`"
--# Take account of old dpkg-architecture output.
--if test -z "$DEB_HOST_ARCH_CPU"; then
--	DEB_HOST_ARCH_CPU="`dpkg-architecture -qDEB_HOST_GNU_CPU`"
--	if test "$DEB_HOST_ARCH_CPU" = x86_64; then
--		DEB_HOST_ARCH_CPU=amd64
--	fi
--fi
-+DEB_HOST_ARCH_CPU="arm"
+@@ -66,14 +66,7 @@
  AC_MSG_RESULT([$DEB_HOST_ARCH_CPU])
  
  AC_MSG_CHECKING([Debian system name])
