@@ -1,3 +1,6 @@
 # retrieved by scancpan from http://cpan.metacpan.org/
-md5    f366863f09905bbe5faa1f986133759c Mail-DKIM-0.52.tar.gz
-sha256 9eaf0b212af1883b9c3f709dcf4811e46122546a38ae979a08756fbfcffb6cb5 Mail-DKIM-0.52.tar.gz
+md5  9de35f8aa77a85dc17423cbcce2bf46d  Mail-DKIM-1.20200824.tar.gz
+sha256  871d329830acb4840423aa59036622fb2ee394efc1d09316dcc32ae94454e916  Mail-DKIM-1.20200824.tar.gz
+
+# computed by scancpan
+sha256  ffaa40feb768566e52d93879fedd2c5483828b6de483874f30a0a4425351555f  LICENSE

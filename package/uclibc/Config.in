@@ -70,6 +70,7 @@ config BR2_PTHREAD_DEBUG
 
 config BR2_TOOLCHAIN_BUILDROOT_USE_SSP
 	bool "Enable stack protection support"
+	depends on BR2_PACKAGE_HOST_BINUTILS_SUPPORTS_CFI
 	select BR2_TOOLCHAIN_HAS_SSP
 	help
 	  Enable stack smashing protection support using GCCs
@@ -105,6 +106,7 @@ config BR2_UCLIBC_TARGET_ARCH
 	default "xtensa"   if BR2_xtensa
 	default "i386"	   if BR2_i386
 	default "x86_64"   if BR2_x86_64
+	default "riscv64"  if BR2_RISCV_64
 
 config BR2_UCLIBC_MIPS_ABI
 	string
