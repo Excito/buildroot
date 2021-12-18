@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-CDEBOOTSTRAP_VERSION = 0.7.7
+CDEBOOTSTRAP_VERSION = 0.7.8
 CDEBOOTSTRAP_SOURCE = cdebootstrap_$(CDEBOOTSTRAP_VERSION).tar.xz
 CDEBOOTSTRAP_SITE = http://http.debian.net/debian/pool/main/c/cdebootstrap
 CDEBOOTSTRAP_LICENSE_FILE = debian/copyright

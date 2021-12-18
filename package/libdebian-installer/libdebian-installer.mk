@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-LIBDEBIAN_INSTALLER_VERSION = 0.120
+LIBDEBIAN_INSTALLER_VERSION = 0.121
 LIBDEBIAN_INSTALLER_SOURCE = libdebian-installer_$(LIBDEBIAN_INSTALLER_VERSION).tar.xz
 LIBDEBIAN_INSTALLER_SITE = http://http.debian.net/debian/pool/main/libd/libdebian-installer
 LIBDEBIAN_INSTALLER_LICENSE_FILE = debian/copyright

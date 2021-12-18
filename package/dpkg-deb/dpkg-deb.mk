@@ -4,9 +4,9 @@
 #
 ################################################################################
 
-DPKG_DEB_VERSION = 1.18.24
+DPKG_DEB_VERSION = 1.20.09
 DPKG_DEB_SOURCE = dpkg_$(DPKG_DEB_VERSION).tar.xz
-DPKG_DEB_SITE = http://http.debian.net/debian/pool/main/d/dpkg
+DPKG_DEB_SITE = http://ftp.debian.net/debian/pool/main/d/dpkg
 DPKG_DEB = GPL-2+
 DPKG_DEB_LICENSE_FILES = COPYING
 HOST_DPKG_DEB_DEPENDENCIES = host-zlib

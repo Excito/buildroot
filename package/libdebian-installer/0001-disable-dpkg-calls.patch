@@ -3,7 +3,7 @@ diff -urN libdebian-installer-0.120.orig/configure.ac libdebian-installer-0.120/
 +++ libdebian-installer-0.120/configure.ac	2020-03-25 10:58:32.809240259 -0400
 @@ -1,4 +1,4 @@
 -AC_INIT([libdebian-installer],m4_esyscmd(dpkg-parsechangelog | perl -ne 'print $1 if m/^Version: (.*)$/;'))
-+AC_INIT([libdebian-installer],[0.120])
++AC_INIT([libdebian-installer],[0.121])
  AM_INIT_AUTOMAKE([])
  AM_MAINTAINER_MODE
  
