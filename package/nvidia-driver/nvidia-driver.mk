@@ -20,8 +20,8 @@ ifeq ($(BR2_PACKAGE_NVIDIA_DRIVER_XORG),y)
 # are build dependencies of packages that depend on nvidia-driver, so
 # they should be built prior to those packages, and the only simple
 # way to do so is to make nvidia-driver depend on them.
-NVIDIA_DRIVER_DEPENDENCIES = mesa3d-headers xlib_libX11 xlib_libXext
-NVIDIA_DRIVER_PROVIDES = libgl libegl libgles
+NVIDIA_DRIVER_DEPENDENCIES += mesa3d-headers xlib_libX11 xlib_libXext
+NVIDIA_DRIVER_PROVIDES += libgl libegl libgles
 
 # libGL.so.$(NVIDIA_DRIVER_VERSION) is the legacy libGL.so library; it
 # has been replaced with libGL.so.1.0.0. Installing both is technically
@@ -35,7 +35,7 @@ NVIDIA_DRIVER_PROVIDES = libgl libegl libgles
 # NVidia extensions (which is deemed bad now), while the former follows
 # the newly-introduced vendor-neutral "dispatching" API/ABI:
 #   https://github.com/aritger/linux-opengl-abi-proposal/blob/master/linux-opengl-abi-proposal.txt
-# However, this is not very usefull to us, as we don't support multiple
+# However, this is not very useful to us, as we don't support multiple
 # GL providers at the same time on the system, which this proposal is
 # aimed at supporting.
 #
@@ -65,7 +65,7 @@ NVIDIA_DRIVER_LIBS_MISC = \
 	libvdpau_nvidia.so.$(NVIDIA_DRIVER_VERSION) \
 	libnvidia-ml.so.$(NVIDIA_DRIVER_VERSION)
 
-NVIDIA_DRIVER_LIBS = \
+NVIDIA_DRIVER_LIBS += \
 	$(NVIDIA_DRIVER_LIBS_GL) \
 	$(NVIDIA_DRIVER_LIBS_EGL) \
 	$(NVIDIA_DRIVER_LIBS_GLES) \
@@ -84,7 +84,7 @@ endef
 # Those libraries are 'private' libraries requiring an agreement with
 # NVidia to develop code for those libs. There seems to be no restriction
 # on using those libraries (e.g. if the user has such an agreement, or
-# wants to run a third-party program developped under such an agreement).
+# wants to run a third-party program developed under such an agreement).
 ifeq ($(BR2_PACKAGE_NVIDIA_DRIVER_PRIVATE_LIBS),y)
 NVIDIA_DRIVER_LIBS += \
 	libnvidia-ifr.so.$(NVIDIA_DRIVER_VERSION) \
@@ -116,6 +116,8 @@ ifeq ($(BR2_PACKAGE_NVIDIA_DRIVER_OPENCL),y)
 NVIDIA_DRIVER_LIBS += \
 	libOpenCL.so.1.0.0 \
 	libnvidia-opencl.so.$(NVIDIA_DRIVER_VERSION)
+NVIDIA_DRIVER_DEPENDENCIES += mesa3d-headers
+NVIDIA_DRIVER_PROVIDES += libopencl
 endif
 
 # Build and install the kernel modules if needed
