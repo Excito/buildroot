@@ -1,7 +1,7 @@
-diff -urN linux-4.9.34/arch/arm/boot/dts/kirkwood-b3.dts linux-4.9.34.b3/arch/arm/boot/dts/kirkwood-b3.dts
---- linux-4.9.34/arch/arm/boot/dts/kirkwood-b3.dts	2017-06-24 01:14:26.000000000 -0400
-+++ linux-4.9.34.b3/arch/arm/boot/dts/kirkwood-b3.dts	2017-06-27 21:20:47.068009601 -0400
-@@ -124,17 +124,19 @@
+diff -urN linux-5.10.87/arch/arm/boot/dts/kirkwood-b3.dts linux-5.10.87.b3/arch/arm/boot/dts/kirkwood-b3.dts
+--- linux-5.10.87/arch/arm/boot/dts/kirkwood-b3.dts	2021-12-17 10:14:42.000000000 +0100
++++ linux-5.10.87.b3/arch/arm/boot/dts/kirkwood-b3.dts	2021-12-18 23:17:29.887159573 +0100
+@@ -121,17 +121,19 @@
  		programming_led {
  			label = "bubba3:green:programming";
  			gpios = <&gpio1 6 GPIO_ACTIVE_HIGH>;
@@ -22,9 +22,9 @@ diff -urN linux-4.9.34/arch/arm/boot/dts/kirkwood-b3.dts linux-4.9.34.b3/arch/ar
  		};
  	};
  
-diff -urN linux-4.9.34/arch/arm/kernel/reboot.c linux-4.9.34.b3/arch/arm/kernel/reboot.c
---- linux-4.9.34/arch/arm/kernel/reboot.c	2017-06-24 01:14:26.000000000 -0400
-+++ linux-4.9.34.b3/arch/arm/kernel/reboot.c	2017-06-27 21:25:04.771350453 -0400
+diff -urN linux-5.10.87/arch/arm/kernel/reboot.c linux-5.10.87.b3/arch/arm/kernel/reboot.c
+--- linux-5.10.87/arch/arm/kernel/reboot.c	2021-12-17 10:14:42.000000000 +0100
++++ linux-5.10.87.b3/arch/arm/kernel/reboot.c	2021-12-18 23:18:52.590956932 +0100
 @@ -104,6 +104,14 @@
  {
  	local_irq_disable();
@@ -54,10 +54,10 @@ diff -urN linux-4.9.34/arch/arm/kernel/reboot.c linux-4.9.34.b3/arch/arm/kernel/
  	if (pm_power_off)
  		pm_power_off();
  }
-diff -urN linux-4.9.34/arch/arm/mach-mvebu/Kconfig linux-4.9.34.b3/arch/arm/mach-mvebu/Kconfig
---- linux-4.9.34/arch/arm/mach-mvebu/Kconfig	2017-06-24 01:14:26.000000000 -0400
-+++ linux-4.9.34.b3/arch/arm/mach-mvebu/Kconfig	2017-06-27 21:26:28.251352889 -0400
-@@ -130,4 +130,11 @@
+diff -urN linux-5.10.87/arch/arm/mach-mvebu/Kconfig linux-5.10.87.b3/arch/arm/mach-mvebu/Kconfig
+--- linux-5.10.87/arch/arm/mach-mvebu/Kconfig	2021-12-17 10:14:42.000000000 +0100
++++ linux-5.10.87.b3/arch/arm/mach-mvebu/Kconfig	2021-12-18 23:18:52.590956932 +0100
+@@ -129,4 +129,11 @@
  	  Say 'Y' here if you want your kernel to support boards based
  	  on the Marvell Kirkwood device tree.
  
@@ -69,10 +69,10 @@ diff -urN linux-4.9.34/arch/arm/mach-mvebu/Kconfig linux-4.9.34.b3/arch/arm/mach
 +	  when asked to power off.
 +
  endif
-diff -urN linux-4.9.34/drivers/net/ethernet/marvell/mv643xx_eth.c linux-4.9.34.b3/drivers/net/ethernet/marvell/mv643xx_eth.c
---- linux-4.9.34/drivers/net/ethernet/marvell/mv643xx_eth.c	2017-06-24 01:14:26.000000000 -0400
-+++ linux-4.9.34.b3/drivers/net/ethernet/marvell/mv643xx_eth.c	2017-06-27 21:31:00.511360833 -0400
-@@ -3197,11 +3197,11 @@
+diff -urN linux-5.10.87/drivers/net/ethernet/marvell/mv643xx_eth.c linux-5.10.87.b3/drivers/net/ethernet/marvell/mv643xx_eth.c
+--- linux-5.10.87/drivers/net/ethernet/marvell/mv643xx_eth.c	2021-12-17 10:14:42.000000000 +0100
++++ linux-5.10.87.b3/drivers/net/ethernet/marvell/mv643xx_eth.c	2021-12-18 23:19:07.251039219 +0100
+@@ -3183,11 +3183,11 @@
  	dev->watchdog_timeo = 2 * HZ;
  	dev->base_addr = 0;
  
@@ -86,27 +86,27 @@ diff -urN linux-4.9.34/drivers/net/ethernet/marvell/mv643xx_eth.c linux-4.9.34.b
  
  	dev->priv_flags |= IFF_UNICAST_FLT;
  	dev->gso_max_segs = MV643XX_MAX_TSO_SEGS;
-diff -urN linux-4.9.34/drivers/net/phy/Kconfig linux-4.9.34.b3/drivers/net/phy/Kconfig
---- linux-4.9.34/drivers/net/phy/Kconfig	2017-06-24 01:14:26.000000000 -0400
-+++ linux-4.9.34.b3/drivers/net/phy/Kconfig	2017-06-27 21:33:01.778031040 -0400
-@@ -264,6 +264,13 @@
- 	---help---
- 	  Currently has a driver for the 88E1011S
+diff -urN linux-5.10.87/drivers/net/phy/Kconfig linux-5.10.87.b3/drivers/net/phy/Kconfig
+--- linux-5.10.87/drivers/net/phy/Kconfig	2021-12-17 10:14:42.000000000 +0100
++++ linux-5.10.87.b3/drivers/net/phy/Kconfig	2021-12-18 23:19:21.484452460 +0100
+@@ -201,6 +201,13 @@
+ 	help
+ 	  Support for the Marvell Alaska MV88X3310 and compatible PHYs.
  
 +config MARVELL_PHY_REVERSE
 +	depends on MARVELL_PHY
 +	bool "Reverse LED activity"
-+	---help---
++	help
 +	  Reverse link and activity LEDS on
 +	  88E1016R and 88E1018R
 +
  config MICREL_PHY
  	tristate "Micrel PHYs"
- 	---help---
-diff -urN linux-4.9.34/drivers/net/phy/marvell.c linux-4.9.34.b3/drivers/net/phy/marvell.c
---- linux-4.9.34/drivers/net/phy/marvell.c	2017-06-24 01:14:26.000000000 -0400
-+++ linux-4.9.34.b3/drivers/net/phy/marvell.c	2017-06-27 21:39:52.041376343 -0400
-@@ -895,6 +895,17 @@
+ 	help
+diff -urN linux-5.10.87/drivers/net/phy/marvell.c linux-5.10.87.b3/drivers/net/phy/marvell.c
+--- linux-5.10.87/drivers/net/phy/marvell.c	2021-12-17 10:14:42.000000000 +0100
++++ linux-5.10.87.b3/drivers/net/phy/marvell.c	2021-12-18 23:19:31.801177046 +0100
+@@ -1091,12 +1091,24 @@
  		return err;
  
  	/* Adjust LED Control */
@@ -124,23 +124,22 @@ diff -urN linux-4.9.34/drivers/net/phy/marvell.c linux-4.9.34.b3/drivers/net/phy
  	if (phydev->dev_flags & MARVELL_PHY_M1118_DNS323_LEDS)
  		err = phy_write(phydev, 0x10, 0x1100);
  	else
-@@ -905,6 +916,7 @@
- 	err = marvell_of_reg_init(phydev);
+ 		err = phy_write(phydev, 0x10, 0x021e);
  	if (err < 0)
  		return err;
 +#endif
  
- 	/* Reset address */
- 	err = phy_write(phydev, MII_MARVELL_PHY_PAGE, 0x0);
-@@ -1546,6 +1558,23 @@
- 		.get_stats = marvell_get_stats,
+ 	err = marvell_of_reg_init(phydev);
+ 	if (err < 0)
+@@ -2686,6 +2698,23 @@
+ 		.set_tunable = m88e1111_set_tunable,
  	},
  	{
 +		.phy_id = MARVELL_PHY_ID_88E1116,
 +		.phy_id_mask = MARVELL_PHY_ID_MASK,
 +		.name = "Marvell 88E1116",
-+		.features = PHY_GBIT_FEATURES,
-+		.flags = PHY_HAS_INTERRUPT,
++		/* PHY_GBIT_FEATURES */
++		.probe = marvell_probe,
 +		.config_init = &m88e1118_config_init,
 +		.config_aneg = &m88e1118_config_aneg,
 +		.read_status = &genphy_read_status,
@@ -156,7 +155,7 @@ diff -urN linux-4.9.34/drivers/net/phy/marvell.c linux-4.9.34.b3/drivers/net/phy
  		.phy_id = MARVELL_PHY_ID_88E1118,
  		.phy_id_mask = MARVELL_PHY_ID_MASK,
  		.name = "Marvell 88E1118",
-@@ -1741,6 +1770,7 @@
+@@ -3028,6 +3057,7 @@
  	{ MARVELL_PHY_ID_88E1101, MARVELL_PHY_ID_MASK },
  	{ MARVELL_PHY_ID_88E1112, MARVELL_PHY_ID_MASK },
  	{ MARVELL_PHY_ID_88E1111, MARVELL_PHY_ID_MASK },
@@ -164,10 +163,10 @@ diff -urN linux-4.9.34/drivers/net/phy/marvell.c linux-4.9.34.b3/drivers/net/phy
  	{ MARVELL_PHY_ID_88E1118, MARVELL_PHY_ID_MASK },
  	{ MARVELL_PHY_ID_88E1121R, MARVELL_PHY_ID_MASK },
  	{ MARVELL_PHY_ID_88E1145, MARVELL_PHY_ID_MASK },
-diff -urN linux-4.9.34/include/linux/marvell_phy.h linux-4.9.34.b3/include/linux/marvell_phy.h
---- linux-4.9.34/include/linux/marvell_phy.h	2017-06-24 01:14:26.000000000 -0400
-+++ linux-4.9.34.b3/include/linux/marvell_phy.h	2017-06-27 21:40:10.961376896 -0400
-@@ -8,6 +8,7 @@
+diff -urN linux-5.10.87/include/linux/marvell_phy.h linux-5.10.87.b3/include/linux/marvell_phy.h
+--- linux-5.10.87/include/linux/marvell_phy.h	2021-12-17 10:14:42.000000000 +0100
++++ linux-5.10.87.b3/include/linux/marvell_phy.h	2021-12-18 23:19:31.801177046 +0100
+@@ -9,6 +9,7 @@
  #define MARVELL_PHY_ID_88E1101		0x01410c60
  #define MARVELL_PHY_ID_88E1112		0x01410c90
  #define MARVELL_PHY_ID_88E1111		0x01410cc0
