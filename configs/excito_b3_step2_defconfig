@@ -1,9 +1,8 @@
 BR2_arm=y
 BR2_CCACHE=y
 BR2_CCACHE_DIR="$(HOME)/.buildroot-ccache-b3-step2"
-BR2_GLOBAL_PATCH_DIR="board/excito/bubbatwo/patches"
+BR2_GLOBAL_PATCH_DIR="board/excito/b3/patches"
 BR2_TOOLCHAIN_BUILDROOT_GLIBC=y
-BR2_KERNEL_HEADERS_4_9=y
 BR2_TOOLCHAIN_BUILDROOT_CXX=y
 BR2_TARGET_GENERIC_HOSTNAME="b3-install"
 BR2_TARGET_GENERIC_ISSUE="Welcome to Excito B3 Rescue/Install"
