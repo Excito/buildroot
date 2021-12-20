@@ -2,6 +2,7 @@
 
 # General
 i2c_dev
+spi_orion
 
 # Network
 mvmdio
@@ -12,8 +13,7 @@ raid0
 raid1
 
 # MTD
-spi_orion
-m25p80
+spi_nor
 
 # RTC
 rtc-mv
