@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-JETRING_VERSION = 0.30
+JETRING_VERSION = 0.31
 JETRING_SITE = http://http.debian.net/debian/pool/main/j/jetring
 JETRING_SOURCE = jetring_$(JETRING_VERSION).tar.xz
 JETRING_DEPENDENCIES = host-gnupg2
