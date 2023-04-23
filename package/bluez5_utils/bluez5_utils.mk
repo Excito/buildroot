@@ -5,7 +5,7 @@
 ################################################################################
 
 # Keep the version and patches in sync with bluez5_utils-headers
-BLUEZ5_UTILS_VERSION = 5.62
+BLUEZ5_UTILS_VERSION = 5.65
 BLUEZ5_UTILS_SOURCE = bluez-$(BLUEZ5_UTILS_VERSION).tar.xz
 BLUEZ5_UTILS_SITE = $(BR2_KERNEL_MIRROR)/linux/bluetooth
 BLUEZ5_UTILS_INSTALL_STAGING = YES
@@ -20,10 +20,13 @@ BLUEZ5_UTILS_DEPENDENCIES = \
 	libglib2
 
 BLUEZ5_UTILS_CONF_OPTS = \
-	--enable-tools \
 	--enable-library \
 	--disable-cups \
 	--disable-manpages \
+	--disable-asan \
+	--disable-lsan \
+	--disable-ubsan \
+	--disable-pie \
 	--with-dbusconfdir=/etc
 
 ifeq ($(BR2_PACKAGE_BLUEZ5_UTILS_OBEX),y)
@@ -44,6 +47,12 @@ ifeq ($(BR2_PACKAGE_BLUEZ5_UTILS_MONITOR),y)
 BLUEZ5_UTILS_CONF_OPTS += --enable-monitor
 else
 BLUEZ5_UTILS_CONF_OPTS += --disable-monitor
+endif
+
+ifeq ($(BR2_PACKAGE_BLUEZ5_UTILS_TOOLS),y)
+BLUEZ5_UTILS_CONF_OPTS += --enable-tools
+else
+BLUEZ5_UTILS_CONF_OPTS += --disable-tools
 endif
 
 # experimental plugins
@@ -125,12 +134,16 @@ else
 BLUEZ5_UTILS_CONF_OPTS += --disable-sixaxis
 endif
 
-# install gatttool (For some reason upstream choose not to do it by default)
 ifeq ($(BR2_PACKAGE_BLUEZ5_UTILS_DEPRECATED),y)
+# install gatttool (For some reason upstream choose not to do it by default)
+# gattool depends on the client for readline
+ifeq ($(BR2_PACKAGE_BLUEZ5_UTILS_CLIENT),y)
 define BLUEZ5_UTILS_INSTALL_GATTTOOL
 	$(INSTALL) -D -m 0755 $(@D)/attrib/gatttool $(TARGET_DIR)/usr/bin/gatttool
 endef
 BLUEZ5_UTILS_POST_INSTALL_TARGET_HOOKS += BLUEZ5_UTILS_INSTALL_GATTTOOL
+endif
+
 # hciattach_bcm43xx defines default firmware path in `/etc/firmware`, but
 # Broadcom firmware blobs are usually located in `/lib/firmware`.
 BLUEZ5_UTILS_CONF_ENV += \

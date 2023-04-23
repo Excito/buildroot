@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-KISMET_VERSION = 2020-12-R3
+KISMET_VERSION = 2022-08-R1
 KISMET_SOURCE = kismet-$(KISMET_VERSION).tar.xz
 KISMET_SITE = http://www.kismetwireless.net/code
 KISMET_DEPENDENCIES = \
@@ -18,9 +18,6 @@ KISMET_DEPENDENCIES = \
 KISMET_LICENSE = GPL-2.0+
 KISMET_LICENSE_FILES = LICENSE
 KISMET_SELINUX_MODULES = kismet
-# Needed because tarball configure has not been rebuilt after
-# https://github.com/kismetwireless/kismet/commit/e70968bcbca86dd448d619c40cdeaae8b7dcee98
-KISMET_AUTORECONF = YES
 
 KISMET_CONF_OPTS = --disable-debuglibs
 
@@ -31,10 +28,6 @@ KISMET_CXXFLAGS += -O0
 endif
 
 KISMET_CONF_ENV += CXXFLAGS="$(KISMET_CXXFLAGS)"
-
-ifeq ($(BR2_TOOLCHAIN_HAS_LIBATOMIC),y)
-KISMET_CONF_ENV += LIBS=-latomic
-endif
 
 ifeq ($(BR2_PACKAGE_LIBCAP),y)
 KISMET_DEPENDENCIES += libcap
