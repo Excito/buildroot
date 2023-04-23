@@ -4,8 +4,8 @@
 #
 ################################################################################
 
-PHP_VERSION = 7.4.26
-PHP_SITE = http://www.php.net/distributions
+PHP_VERSION = 8.2.3
+PHP_SITE = https://www.php.net/distributions
 PHP_SOURCE = php-$(PHP_VERSION).tar.xz
 PHP_INSTALL_STAGING = YES
 PHP_INSTALL_STAGING_OPTS = INSTALL_ROOT=$(STAGING_DIR) install
@@ -35,6 +35,10 @@ ifeq ($(BR2_STATIC_LIBS)$(BR2_TOOLCHAIN_HAS_THREADS),yy)
 PHP_STATIC_LIBS += -lpthread
 endif
 
+ifeq ($(BR2_TOOLCHAIN_HAS_LIBATOMIC),y)
+PHP_EXTRA_LIBS += -latomic
+endif
+
 ifeq ($(call qstrip,$(BR2_TARGET_LOCALTIME)),)
 PHP_LOCALTIME = UTC
 else
@@ -62,7 +66,7 @@ PHP_CXXFLAGS = $(TARGET_CXXFLAGS)
 # The OPcache extension isn't cross-compile friendly
 # Throw some defines here to avoid patching heavily
 ifeq ($(BR2_PACKAGE_PHP_EXT_OPCACHE),y)
-PHP_CONF_OPTS += --enable-opcache
+PHP_CONF_OPTS += --enable-opcache --disable-opcache-jit
 PHP_CONF_ENV += ac_cv_func_mprotect=yes
 PHP_CFLAGS += \
 	-DHAVE_SHM_IPC \
@@ -90,7 +94,7 @@ PHP_CONF_OPTS += --with-apxs2=$(STAGING_DIR)/usr/bin/apxs
 
 # Enable thread safety option if Apache MPM is event or worker
 ifeq ($(BR2_PACKAGE_APACHE_MPM_EVENT)$(BR2_PACKAGE_APACHE_MPM_WORKER),y)
-PHP_CONF_OPTS += --enable-maintainer-zts
+PHP_CONF_OPTS += --enable-zts
 endif
 endif
 
@@ -107,7 +111,6 @@ PHP_CONF_OPTS += \
 	$(if $(BR2_PACKAGE_PHP_EXT_XMLWRITER),--enable-xmlwriter) \
 	$(if $(BR2_PACKAGE_PHP_EXT_EXIF),--enable-exif) \
 	$(if $(BR2_PACKAGE_PHP_EXT_FTP),--enable-ftp) \
-	$(if $(BR2_PACKAGE_PHP_EXT_JSON),--enable-json) \
 	$(if $(BR2_PACKAGE_PHP_EXT_TOKENIZER),--enable-tokenizer) \
 	$(if $(BR2_PACKAGE_PHP_EXT_PCNTL),--enable-pcntl) \
 	$(if $(BR2_PACKAGE_PHP_EXT_SHMOP),--enable-shmop) \
@@ -137,11 +140,6 @@ PHP_CONF_OPTS += --enable-mbstring
 PHP_DEPENDENCIES += oniguruma
 endif
 
-ifeq ($(BR2_PACKAGE_PHP_EXT_MCRYPT),y)
-PHP_CONF_OPTS += --with-mcrypt=$(STAGING_DIR)/usr
-PHP_DEPENDENCIES += libmcrypt
-endif
-
 ifeq ($(BR2_PACKAGE_PHP_EXT_OPENSSL),y)
 PHP_CONF_OPTS += --with-openssl=$(STAGING_DIR)/usr
 PHP_DEPENDENCIES += openssl
@@ -154,18 +152,6 @@ ifeq ($(BR2_PACKAGE_PHP_EXT_LIBXML2),y)
 PHP_CONF_ENV += php_cv_libxml_build_works=yes
 PHP_CONF_OPTS += --with-libxml
 PHP_DEPENDENCIES += libxml2
-endif
-
-ifeq ($(BR2_PACKAGE_PHP_EXT_WDDX),y)
-PHP_CONF_OPTS += --enable-wddx --with-libexpat-dir=$(STAGING_DIR)/usr
-PHP_DEPENDENCIES += expat
-endif
-
-ifeq ($(BR2_PACKAGE_PHP_EXT_XMLRPC),y)
-PHP_CONF_OPTS += \
-	--with-xmlrpc \
-	$(if $(BR2_PACKAGE_LIBICONV),--with-iconv-dir=$(STAGING_DIR)/usr)
-PHP_DEPENDENCIES += $(if $(BR2_PACKAGE_LIBICONV),libiconv)
 endif
 
 ifeq ($(BR2_PACKAGE_PHP_EXT_ZIP),y)
@@ -194,13 +180,8 @@ endif
 endif
 
 ifeq ($(BR2_PACKAGE_PHP_EXT_INTL),y)
-PHP_CONF_OPTS += --enable-intl --with-icu-dir=$(STAGING_DIR)/usr
-PHP_CXXFLAGS += "`$(STAGING_DIR)/usr/bin/icu-config --cxxflags`"
+PHP_CONF_OPTS += --enable-intl
 PHP_DEPENDENCIES += icu
-# The intl module is implemented in C++, but PHP fails to use
-# g++ as the compiler for the final link. As a workaround,
-# tell it to link libstdc++.
-PHP_EXTRA_LIBS += -lstdc++
 endif
 
 ifeq ($(BR2_PACKAGE_PHP_EXT_GMP),y)

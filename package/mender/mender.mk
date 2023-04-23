@@ -4,9 +4,8 @@
 #
 ################################################################################
 
-MENDER_VERSION = 2.3.0
-MENDER_SITE = https://github.com/mendersoftware/mender/archive
-MENDER_SOURCE = $(MENDER_VERSION).tar.gz
+MENDER_VERSION = 3.4.0
+MENDER_SITE = $(call github,mendersoftware,mender,$(MENDER_VERSION))
 MENDER_LICENSE = Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC, MIT, OLDAP-2.8
 
 # Vendor license paths generated with:
@@ -14,26 +13,32 @@ MENDER_LICENSE = Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC, MIT, OLDAP-2.8
 MENDER_LICENSE_FILES = \
 	LICENSE \
 	LIC_FILES_CHKSUM.sha256 \
-	vendor/github.com/mendersoftware/mendertesting/LICENSE \
 	vendor/github.com/mendersoftware/mender-artifact/LICENSE \
+	vendor/github.com/mendersoftware/openssl/LICENSE \
+	vendor/github.com/minio/sha256-simd/LICENSE \
+	vendor/github.com/mendersoftware/progressbar/LICENSE \
 	vendor/github.com/pkg/errors/LICENSE \
+	vendor/github.com/godbus/dbus/LICENSE \
+	vendor/github.com/gorilla/websocket/LICENSE \
+	vendor/github.com/klauspost/compress/LICENSE \
 	vendor/github.com/pmezard/go-difflib/LICENSE \
-	vendor/golang.org/x/crypto/LICENSE \
 	vendor/golang.org/x/sys/LICENSE \
-	vendor/golang.org/x/net/LICENSE \
 	vendor/github.com/bmatsuo/lmdb-go/LICENSE.md \
-	vendor/golang.org/x/text/LICENSE \
 	vendor/github.com/remyoudompheng/go-liblzma/LICENSE \
+	vendor/golang.org/x/term/LICENSE \
 	vendor/github.com/davecgh/go-spew/LICENSE \
+	vendor/github.com/klauspost/pgzip/LICENSE \
+	vendor/github.com/klauspost/cpuid/v2/LICENSE \
 	vendor/github.com/sirupsen/logrus/LICENSE \
 	vendor/github.com/stretchr/testify/LICENSE \
-	vendor/github.com/stretchr/testify/LICENCE.txt \
-	vendor/github.com/stretchr/objx/LICENSE.md \
 	vendor/github.com/ungerik/go-sysfs/LICENSE \
-	vendor/github.com/urfave/cli/LICENSE \
+	vendor/github.com/urfave/cli/v2/LICENSE \
+	vendor/github.com/stretchr/objx/LICENSE \
+	vendor/gopkg.in/yaml.v3/LICENSE \
+	vendor/github.com/mattn/go-isatty/LICENSE \
 	vendor/github.com/bmatsuo/lmdb-go/LICENSE.mdb.md
 
-MENDER_DEPENDENCIES = xz
+MENDER_DEPENDENCIES = host-pkgconf openssl
 
 MENDER_LDFLAGS = -X github.com/mendersoftware/mender/conf.Version=$(MENDER_VERSION)
 
@@ -55,7 +60,7 @@ define MENDER_INSTALL_CONFIG_FILES
 
 	$(INSTALL) -D -m 0755 $(@D)/support/mender-device-identity \
 		$(TARGET_DIR)/usr/share/mender/identity/mender-device-identity
-	$(foreach f,hostinfo network os rootfs-type, \
+	$(foreach f,bootloader-integration hostinfo network os rootfs-type, \
 		$(INSTALL) -D -m 0755 $(@D)/support/mender-inventory-$(f) \
 			$(TARGET_DIR)/usr/share/mender/inventory/mender-inventory-$(f)
 	)
@@ -75,6 +80,26 @@ define MENDER_INSTALL_CONFIG_FILES
 endef
 
 MENDER_POST_INSTALL_TARGET_HOOKS += MENDER_INSTALL_CONFIG_FILES
+
+ifeq ($(BR2_PACKAGE_XZ),y)
+MENDER_DEPENDENCIES += xz
+else
+MENDER_TAGS += nolzma
+endif
+
+ifeq ($(BR2_PACKAGE_DBUS)$(BR2_PACKAGE_LIBGLIB2),yy)
+MENDER_DEPENDENCIES += libglib2
+define MENDER_INSTALL_DBUS_AUTHENTICATION_MANAGER_CONF
+	$(INSTALL) -D -m 0755 $(@D)/support/dbus/io.mender.AuthenticationManager.conf \
+		$(TARGET_DIR)/etc/dbus-1/system.d/io.mender.AuthenticationManager.conf
+
+	$(INSTALL) -D -m 0755 $(@D)/support/dbus/io.mender.UpdateManager.conf \
+		$(TARGET_DIR)/etc/dbus-1/system.d/io.mender.UpdateManager.conf
+endef
+MENDER_POST_INSTALL_TARGET_HOOKS += MENDER_INSTALL_DBUS_AUTHENTICATION_MANAGER_CONF
+else
+MENDER_TAGS += nodbus
+endif
 
 define MENDER_INSTALL_INIT_SYSTEMD
 	$(INSTALL) -D -m 0644 $(MENDER_PKGDIR)/mender-client.service \

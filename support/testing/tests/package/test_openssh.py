@@ -25,12 +25,10 @@ class TestOpensshBase(infra.basetest.BRTest):
         self.emulator.login(self.passwd)
 
         cmd = "netstat -ltn 2>/dev/null | grep 0.0.0.0:22"
-        _, exit_code = self.emulator.run(cmd)
-        self.assertEqual(exit_code, 0)
+        self.assertRunOk(cmd)
 
         cmd = "sshpass -p {} ssh -oStrictHostKeyChecking=no localhost /bin/true".format(self.passwd)
-        _, exit_code = self.emulator.run(cmd)
-        self.assertEqual(exit_code, 0)
+        self.assertRunOk(cmd)
 
 
 class TestOpenSshuClibc(TestOpensshBase):
@@ -51,7 +49,6 @@ class TestOpenSshGlibc(TestOpensshBase):
         BR2_arm=y
         BR2_TOOLCHAIN_EXTERNAL=y
         BR2_TOOLCHAIN_EXTERNAL_BOOTLIN=y
-        BR2_TOOLCHAIN_EXTERNAL_BOOTLIN_ARMV5_EABI_GLIBC_STABLE=y
         BR2_PACKAGE_RNG_TOOLS=y
         BR2_TARGET_ROOTFS_CPIO=y
         """
