@@ -15,11 +15,11 @@ HOST_DPKG_DEB_CONF_OPTS = --disable-dselect --disable-start-stop-daemon --disabl
 define HOST_DPKG_DEB_BUILD_CMDS
 	make -C $(@D)/lib/compat
 	make -C $(@D)/lib/dpkg
-	make -C $(@D)/dpkg-deb
+	make -C $(@D)/src dpkg-deb
 endef
 
 define HOST_DPKG_DEB_INSTALL_CMDS
-	$(INSTALL) -D -m 0755 $(@D)/dpkg-deb/dpkg-deb $(HOST_DIR)/usr/bin/dpkg-deb
+	$(INSTALL) -D -m 0755 $(@D)/src/dpkg-deb $(HOST_DIR)/usr/bin/dpkg-deb
 endef
 
 $(eval $(host-autotools-package))
