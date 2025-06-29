@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-DPKG_DEB_VERSION = 1.21.22
+DPKG_DEB_VERSION = 1.22.20
 DPKG_DEB_SOURCE = dpkg_$(DPKG_DEB_VERSION).tar.xz
 DPKG_DEB_SITE = http://http.debian.net/debian/pool/main/d/dpkg
 DPKG_DEB = GPL-2+
