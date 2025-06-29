@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-WPA_SUPPLICANT_VERSION = 2.10
+WPA_SUPPLICANT_VERSION = 2.11
 WPA_SUPPLICANT_SITE = http://w1.fi/releases
 WPA_SUPPLICANT_LICENSE = BSD-3-Clause
 WPA_SUPPLICANT_LICENSE_FILES = README
@@ -23,9 +23,6 @@ WPA_SUPPLICANT_CONFIG_EDITS =
 WPA_SUPPLICANT_CONFIG_ENABLE = \
 	CONFIG_INTERNAL_LIBTOMMATH \
 	CONFIG_MATCH_IFACE
-
-WPA_SUPPLICANT_CONFIG_DISABLE = \
-	CONFIG_SMARTCARD
 
 # libnl-3 needs -lm (for rint) and -lpthread if linking statically
 # And library order matters hence stick -lnl-3 first since it's appended
@@ -126,18 +123,29 @@ ifeq ($(BR2_PACKAGE_WPA_SUPPLICANT_WPS),)
 WPA_SUPPLICANT_CONFIG_DISABLE += CONFIG_WPS
 endif
 
+# WPA3 configurations:
+# - CONFIG_DPP: Easy Connect (Device Provisioning Protocol - DPP R1 & R2)
+# - CONFIG_SAE: Simultaneous Authentication of Equals (SAE), WPA3-Personal
+# - CONFIG_SAE_PK: SAE Public Key, WPA3-Personal
+# - CONFIG_OWE: Opportunistic Wireless Encryption (OWE)
+# - CONFIG_SUITEB: WPA3-Enterprise
+# - CONFIG_SUITEB192: WPA3-Enterprise (SuiteB 192 bits security)
 ifeq ($(BR2_PACKAGE_WPA_SUPPLICANT_WPA3),y)
 WPA_SUPPLICANT_CONFIG_ENABLE += \
 	CONFIG_DPP \
 	CONFIG_SAE \
 	CONFIG_SAE_PK \
-	CONFIG_OWE
+	CONFIG_OWE \
+	CONFIG_SUITEB \
+	CONFIG_SUITEB192
 else
 WPA_SUPPLICANT_CONFIG_DISABLE += \
 	CONFIG_DPP \
 	CONFIG_SAE \
 	CONFIG_SAE_PK \
-	CONFIG_OWE
+	CONFIG_OWE \
+	CONFIG_SUITEB \
+	CONFIG_SUITEB192
 endif
 
 # Try to use openssl if it's already available
@@ -180,10 +188,20 @@ WPA_SUPPLICANT_DEPENDENCIES += readline
 WPA_SUPPLICANT_CONFIG_ENABLE += CONFIG_READLINE
 endif
 
+ifeq ($(BR2_PACKAGE_WPA_SUPPLICANT_SMARTCARD),y)
+WPA_SUPPLICANT_CONFIG_ENABLE += CONFIG_SMARTCARD
+else
+WPA_SUPPLICANT_CONFIG_DISABLE += CONFIG_SMARTCARD
+endif
+
 ifeq ($(BR2_PACKAGE_WPA_SUPPLICANT_CTRL_IFACE),y)
 define WPA_SUPPLICANT_ENABLE_CTRL_IFACE
 	sed -i '/ctrl_interface/s/^#//g' $(TARGET_DIR)/etc/wpa_supplicant.conf
 endef
+endif
+
+ifeq ($(BR2_PACKAGE_WPA_SUPPLICANT_WEP),y)
+WPA_SUPPLICANT_CONFIG_ENABLE += CONFIG_WEP
 endif
 
 ifeq ($(BR2_PACKAGE_WPA_SUPPLICANT_WPA_CLIENT_SO),y)
@@ -243,7 +261,7 @@ ifeq ($(BR2_PACKAGE_DBUS),y)
 define WPA_SUPPLICANT_INSTALL_DBUS
 	$(INSTALL) -m 0644 -D \
 		$(@D)/wpa_supplicant/dbus/dbus-wpa_supplicant.conf \
-		$(TARGET_DIR)/etc/dbus-1/system.d/wpa_supplicant.conf
+		$(TARGET_DIR)/usr/share/dbus-1/system.d/wpa_supplicant.conf
 	$(WPA_SUPPLICANT_INSTALL_DBUS_NEW)
 endef
 endif

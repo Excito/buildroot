@@ -4,11 +4,11 @@
 #
 ################################################################################
 
-LAPACK_VERSION = 3.10.1
+LAPACK_VERSION = 3.12.1
 LAPACK_LICENSE = BSD-3-Clause
 LAPACK_LICENSE_FILES = LICENSE
 LAPACK_SITE = $(call github,Reference-LAPACK,lapack,v$(LAPACK_VERSION))
-LAPACK_CPE_ID_VENDOR = lapack_project
+LAPACK_CPE_ID_VALID = YES
 LAPACK_INSTALL_STAGING = YES
 LAPACK_SUPPORTS_IN_SOURCE_BUILD = NO
 LAPACK_CONF_OPTS = -DLAPACKE=ON -DCBLAS=ON
