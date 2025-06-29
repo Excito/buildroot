@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-CONNMAN_VERSION = 1.41
+CONNMAN_VERSION = 1.44
 CONNMAN_SOURCE = connman-$(CONNMAN_VERSION).tar.xz
 CONNMAN_SITE = $(BR2_KERNEL_MIRROR)/linux/network/connman
 CONNMAN_DEPENDENCIES = libglib2 dbus
@@ -13,12 +13,11 @@ CONNMAN_LICENSE = GPL-2.0
 CONNMAN_LICENSE_FILES = COPYING
 CONNMAN_CPE_ID_VENDOR = intel
 
-# 0001-gweb-Fix-OOB-write-in-received_data.patch
-CONNMAN_IGNORE_CVES += CVE-2022-32292
+# 0001-dnsproxy-Fix-NULL-empty-lookup-causing-potential-cra.patch
+CONNMAN_IGNORE_CVES += CVE-2025-32743
 
-# 0002-wispr-Add-reference-counter-to-portal-context.patch
-# 0003-wispr-Update-portal-context-references.patch
-CONNMAN_IGNORE_CVES += CVE-2022-32293
+# 0002-dnsproxy-Address-CVE-2025-32366-vulnerability.patch
+CONNMAN_IGNORE_CVES += CVE-2025-32366
 
 CONNMAN_CONF_OPTS = --with-dbusconfdir=/etc
 

@@ -4,14 +4,21 @@
 #
 ################################################################################
 
-NFTABLES_VERSION = 1.0.5
-NFTABLES_SOURCE = nftables-$(NFTABLES_VERSION).tar.bz2
+NFTABLES_VERSION = 1.1.0
+NFTABLES_SOURCE = nftables-$(NFTABLES_VERSION).tar.xz
 NFTABLES_SITE = https://www.netfilter.org/projects/nftables/files
 NFTABLES_DEPENDENCIES = libmnl libnftnl host-pkgconf $(TARGET_NLS_DEPENDENCIES)
 NFTABLES_LICENSE = GPL-2.0
 NFTABLES_LICENSE_FILES = COPYING
-NFTABLES_CONF_OPTS = --disable-debug --disable-man-doc --disable-pdf-doc
+NFTABLES_INSTALL_STAGING = YES
 NFTABLES_SELINUX_MODULES = iptables
+
+# Python bindings are handled by package nftables-python
+NFTABLES_CONF_OPTS = \
+	--disable-debug \
+	--disable-man-doc \
+	--disable-pdf-doc \
+	--disable-python
 
 ifeq ($(BR2_PACKAGE_GMP),y)
 NFTABLES_DEPENDENCIES += gmp
@@ -35,18 +42,11 @@ else
 NFTABLES_CONF_OPTS += --without-cli
 endif
 
-ifeq ($(BR2_PACKAGE_JANSSON),y)
+ifeq ($(BR2_PACKAGE_NFTABLES_JSON),y)
 NFTABLES_DEPENDENCIES += jansson
 NFTABLES_CONF_OPTS += --with-json
 else
 NFTABLES_CONF_OPTS += --without-json
-endif
-
-ifeq ($(BR2_PACKAGE_PYTHON3),y)
-NFTABLES_CONF_OPTS += --enable-python
-NFTABLES_DEPENDENCIES += python3
-else
-NFTABLES_CONF_OPTS += --disable-python
 endif
 
 NFTABLES_CONF_ENV = LIBS="$(NFTABLES_LIBS)"
@@ -57,4 +57,12 @@ define NFTABLES_LINUX_CONFIG_FIXUPS
 	$(call KCONFIG_ENABLE_OPT,CONFIG_NF_TABLES_INET)
 endef
 
+define NFTABLES_INSTALL_INIT_SYSV
+	$(INSTALL) -m 0755 -D package/nftables/S35nftables \
+		$(TARGET_DIR)/etc/init.d/S35nftables
+endef
+
 $(eval $(autotools-package))
+
+# Legacy: we used to handle it in this .mk
+include package/nftables/nftables-python/nftables-python.mk

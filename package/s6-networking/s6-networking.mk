@@ -4,16 +4,15 @@
 #
 ################################################################################
 
-S6_NETWORKING_VERSION = 2.5.1.1
-S6_NETWORKING_SITE = http://skarnet.org/software/s6-networking
+S6_NETWORKING_VERSION = 2.7.0.4
+S6_NETWORKING_SITE = https://skarnet.org/software/s6-networking
 S6_NETWORKING_LICENSE = ISC
 S6_NETWORKING_LICENSE_FILES = COPYING
 S6_NETWORKING_INSTALL_STAGING = YES
 S6_NETWORKING_DEPENDENCIES = s6-dns s6
 
 S6_NETWORKING_CONF_OPTS = \
-	--prefix=/ \
-	--with-sysdeps=$(STAGING_DIR)/lib/skalibs/sysdeps \
+	--with-sysdeps=$(STAGING_DIR)/usr/lib/skalibs/sysdeps \
 	--with-include=$(STAGING_DIR)/include \
 	--with-dynlib=$(STAGING_DIR)/lib \
 	--with-lib=$(STAGING_DIR)/lib/execline \

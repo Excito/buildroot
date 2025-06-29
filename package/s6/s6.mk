@@ -4,16 +4,15 @@
 #
 ################################################################################
 
-S6_VERSION = 2.11.1.2
-S6_SITE = http://skarnet.org/software/s6
+S6_VERSION = 2.13.1.0
+S6_SITE = https://skarnet.org/software/s6
 S6_LICENSE = ISC
 S6_LICENSE_FILES = COPYING
 S6_INSTALL_STAGING = YES
 S6_DEPENDENCIES = execline
 
 S6_CONF_OPTS = \
-	--prefix=/ \
-	--with-sysdeps=$(STAGING_DIR)/lib/skalibs/sysdeps \
+	--with-sysdeps=$(STAGING_DIR)/usr/lib/skalibs/sysdeps \
 	--with-include=$(STAGING_DIR)/include \
 	--with-dynlib=$(STAGING_DIR)/lib \
 	--with-lib=$(STAGING_DIR)/lib/execline \

@@ -1,5 +1,6 @@
 config BR2_PACKAGE_HOST_GNUPG2
 	bool "host gnupg2"
+	depends on !BR2_PACKAGE_HOST_GNUPG
 	help
 	  GnuPG is the GNU project's complete and free implementation
 	  of the OpenPGP standard as defined by RFC4880. GnuPG allows
