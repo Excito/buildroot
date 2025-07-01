@@ -1,11 +1,12 @@
-diff -ur a/Makefile b/Makefile
+diff --git a/Makefile b/Makefile
+index 2304ae1..8a87930 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -52,7 +52,5 @@ install: build
-    cp -a keyrings/debian-archive-keyring.gpg $(DESTDIR)/usr/share/keyrings/
-    cp keyrings/debian-archive-removed-keys.pgp $(DESTDIR)/usr/share/keyrings/
-    cp -a keyrings/debian-archive-removed-keys.gpg $(DESTDIR)/usr/share/keyrings/
--   install -d $(DESTDIR)/etc/apt/trusted.gpg.d/
--   cp $(shell find apt-trusted-asc/ -name '*.asc' -type f) $(DESTDIR)/etc/apt/trusted.gpg.d/
-
+ 	cp -a keyrings/debian-archive-keyring.gpg $(DESTDIR)/usr/share/keyrings/
+ 	cp keyrings/debian-archive-removed-keys.pgp $(DESTDIR)/usr/share/keyrings/
+ 	cp -a keyrings/debian-archive-removed-keys.gpg $(DESTDIR)/usr/share/keyrings/
+-	install -d $(DESTDIR)/etc/apt/trusted.gpg.d/
+-	cp $(shell find apt-trusted-asc/ -name '*.asc' -type f) $(DESTDIR)/etc/apt/trusted.gpg.d/
+ 
  .PHONY: clean build install
